@@ -30,9 +30,8 @@ dependencies = []
 dev = [
     "ruff",
     "mypy",
-    "pytest",
+    "pytest>=8.4.1",
 ]
-
 
 ### Tooling Configuration ###
 
