@@ -12,7 +12,7 @@ QUIZ_PROMPT = textwrap.dedent("""
 """)
 
 
-def introduce_bot(bot_name: str, birth_year: int) -> None:
+def show_bot_info(bot_name: str, birth_year: int) -> None:
     intro_message = textwrap.dedent(f"""
         Hello! My name is {bot_name}.
         I was created in {birth_year}.
@@ -20,7 +20,7 @@ def introduce_bot(bot_name: str, birth_year: int) -> None:
     print(intro_message)
 
 
-def remind_name() -> None:
+def ask_for_name() -> None:
     name = input("Please, remind me your name.")
     print(f"What a great name you have, {name}!")
 
@@ -60,5 +60,5 @@ def quiz_programming_concepts() -> None:
             print("That's not a valid number. Please try again.")
 
 
-def print_congratulations() -> None:
+def show_congratulations_message() -> None:
     print("Congratulations, have a nice day!")
