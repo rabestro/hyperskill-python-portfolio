@@ -23,6 +23,7 @@ class GameStatistics:
 @dataclasses.dataclass
 class HangmanSession:
     """Represents a single game session of Hangman."""
+
     word: str
     guesses: set[str] = dataclasses.field(default_factory=set)
     _unique_word_letters: frozenset[str] = dataclasses.field(init=False, repr=False)

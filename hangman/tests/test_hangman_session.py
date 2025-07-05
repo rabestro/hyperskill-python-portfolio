@@ -59,9 +59,7 @@ class TestHangmanSession:
             ("a", Status.MISS),  # Another incorrect letter
         ],
     )
-    def test_make_guess_hit_or_miss(
-            self, letter: str, expected_status: Status
-    ) -> None:
+    def test_make_guess_hit_or_miss(self, letter: str, expected_status: Status) -> None:
         """
         Tests a single guess for both HIT and MISS cases using parametrization.
         """
