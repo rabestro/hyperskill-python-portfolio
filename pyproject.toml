@@ -1,0 +1,69 @@
+[project]
+name = "hyperskill-python-portfolio"
+version = "0.1.0"
+description = "My journey through Hyperskill, captured in a portfolio of Python projects. Each solution is refactored for quality, tested with pytest, and statically checked with mypy."
+authors = [
+    { name = "Jegors Čemisovs", email = "jegors.cemisovs@gmail.com" },
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.11"
+
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Education",
+]
+
+# Project dependencies would go here if there were any common ones.
+dependencies = []
+
+[project.urls]
+"Homepage" = "https://github.com/rabestro/hyperskill-python-portfolio"
+"Repository" = "https://github.com/rabestro/hyperskill-python-portfolio"
+
+[project.optional-dependencies]
+# Dependencies required for development (testing, linting, etc.)
+dev = [
+    "ruff",
+    "mypy",
+    "pytest>=8.4.1",
+]
+
+### Tooling Configuration ###
+
+[tool.ruff]
+# Target the Python version you're using.
+target-version = "py313"
+line-length = 88
+
+# For `ruff check` (linting)
+[tool.ruff.lint]
+# A good starting set of rules:
+# E/F: pyflakes/pycodestyle errors (essential)
+# I: isort (import sorting)
+# UP: pyupgrade (modernize code)
+# B: flake8-bugbear (potential bugs)
+# C4: flake8-comprehensions (more idiomatic comprehensions)
+select = ["E", "F", "I", "UP", "B", "C4"]
+ignore = []
+
+# For `ruff format` (replaces Black)
+[tool.ruff.format]
+quote-style = "double"
+
+
+[tool.mypy]
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+packages = ["hangman.hangman"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+# Assumes tests are in `tests` subdirectories within each project folder
+testpaths = ["hangman/tests"] # Add more as you create projects: "chatbot/tests"
+addopts = "-ra -q --strict-markers"
