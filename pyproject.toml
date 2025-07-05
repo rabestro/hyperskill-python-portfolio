@@ -60,9 +60,10 @@ warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
 mypy_path = "src"
+exclude = "^test"
 
 [tool.pytest.ini_options]
 minversion = "7.0"
 # Assumes tests are in `tests` subdirectories within each project folder
-testpaths = ["hangman/tests"] # Add more as you create projects: "chatbot/tests"
+testpaths = ["tests"]
 addopts = "-ra -q --strict-markers"
