@@ -10,6 +10,8 @@ repos:
       - id: check-yaml          # Checks YAML files for syntax errors
       - id: check-toml          # Checks TOML files for syntax errors
       - id: check-added-large-files # Prevents committing large files
+      - id: mixed-line-ending
+        args: [--fix=lf]
 
   # --- Ruff: The all-in-one linter and formatter ---
   - repo: https://github.com/astral-sh/ruff-pre-commit
