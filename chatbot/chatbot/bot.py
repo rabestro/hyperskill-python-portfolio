@@ -1,8 +1,23 @@
+import textwrap
+
+BOT_NAME = "Aid"
+BIRTH_YEAR = 2020
+QUIZ_CORRECT_ANSWER = 2
+QUIZ_PROMPT = textwrap.dedent("""
+    Why do we use methods?
+    1. To repeat a statement multiple times.
+    2. To decompose a program into several small subroutines.
+    3. To determine the execution time of a program.
+    4. To interrupt the execution of a program.
+""")
+
+
 def introduce_bot(bot_name: str, birth_year: int) -> None:
-    print(f"""
-    Hello! My name is {bot_name}.
-    I was created in {birth_year}.
+    intro_message = textwrap.dedent(f"""
+        Hello! My name is {bot_name}.
+        I was created in {birth_year}.
     """)
+    print(intro_message)
 
 
 def remind_name() -> None:
@@ -31,18 +46,18 @@ def count_to_number() -> None:
 
 
 def quiz_programming_concepts() -> None:
-    print("Let's test your programming knowledge.")
+    """Tests the user's programming knowledge."""
+    print("\nLet's test your programming knowledge.")
+    print(QUIZ_PROMPT)
     while True:
-        answer = int(
-            input("""Why do we use methods?
-        1. To repeat a statement multiple times.
-        2. To decompose a program into several small subroutines.
-        3. To determine the execution time of a program.
-        4. To interrupt the execution of a program.""")
-        )
-        if answer == 2:
-            break
-    print("Completed, have a nice day!")
+        try:
+            answer = int(input("Enter your choice: "))
+            if answer == QUIZ_CORRECT_ANSWER:
+                break
+            else:
+                print("Please, try again.")
+        except ValueError:
+            print("That's not a valid number. Please try again.")
 
 
 def print_congratulations() -> None:

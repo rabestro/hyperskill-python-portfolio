@@ -6,12 +6,13 @@ from .bot import (
     quiz_programming_concepts,
     remind_name,
 )
+from . import bot
 
 
 def main() -> None:
     """Initializes and runs the game."""
 
-    introduce_bot(bot_name="Aid", birth_year=2020)
+    introduce_bot(bot.BOT_NAME, bot.BIRTH_YEAR)
     remind_name()
     guess_age()
     count_to_number()
