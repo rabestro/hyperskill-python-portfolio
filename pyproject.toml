@@ -49,6 +49,7 @@ line-length = 88
 # C4: flake8-comprehensions (more idiomatic comprehensions)
 select = ["E", "F", "I", "UP", "B", "C4"]
 ignore = []
+pydocstyle.convention                    = "google"
 
 # For `ruff format` (replaces Black)
 [tool.ruff.format]
@@ -64,6 +65,5 @@ exclude = "^test"
 
 [tool.pytest.ini_options]
 minversion = "7.0"
-# Assumes tests are in `tests` subdirectories within each project folder
 testpaths = ["tests"]
 addopts = "-ra -q --strict-markers"
