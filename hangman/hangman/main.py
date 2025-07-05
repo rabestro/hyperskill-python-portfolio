@@ -1,5 +1,6 @@
 from .game import Game
 
+
 def main() -> None:
     """Initializes and runs the game."""
     game = Game()

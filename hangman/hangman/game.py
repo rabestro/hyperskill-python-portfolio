@@ -1,8 +1,8 @@
 import random
 from typing import Final
 
-from .io_utils import get_menu_command, get_letter_from_user
-from .models import GameStatistics, MenuOption, HangmanSession, Status
+from .io_utils import get_letter_from_user, get_menu_command
+from .models import GameStatistics, HangmanSession, MenuOption, Status
 
 
 class Game:
@@ -18,13 +18,13 @@ class Game:
         """Start the main game loop."""
         print("H A N G M A N")
         while True:
-            command = get_menu_command()
-            if command == MenuOption.EXIT:
-                break
-            elif command == MenuOption.PLAY:
-                self._play_one_game()
-            elif command == MenuOption.RESULTS:
-                self._show_results()
+            match get_menu_command():
+                case MenuOption.EXIT:
+                    break
+                case MenuOption.PLAY:
+                    self._play_one_game()
+                case MenuOption.RESULTS:
+                    self._show_results()
 
     def _play_one_game(self) -> None:
         """Manages the logic for a single round of Hangman."""
