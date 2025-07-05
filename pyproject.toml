@@ -59,7 +59,6 @@ quote-style = "double"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
-packages = ["hangman.hangman", "chatbot.chatbot"]
 
 [tool.pytest.ini_options]
 minversion = "7.0"
