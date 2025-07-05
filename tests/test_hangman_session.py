@@ -2,7 +2,7 @@
 
 import pytest
 
-from hangman.hangman.models import HangmanSession, Status
+from src.hangman.models import HangmanSession, Status
 
 
 class TestHangmanSession:
