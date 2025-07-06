@@ -1,8 +1,8 @@
-from src.rps.game_logic import GameOptions
+from src.rps.game_logic import GameRules
 
 
 def test_classic_rock_paper_scissors():
-    options = GameOptions("rock,paper,scissors")
+    options = GameRules()
     # User wins
     assert options.compare("rock", "scissors") == 1
     assert options.compare("scissors", "paper") == 1

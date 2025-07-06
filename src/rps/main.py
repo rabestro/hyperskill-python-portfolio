@@ -1,11 +1,11 @@
 from file_handler import get_user_score
-from game_logic import GameOptions
+from game_logic import create_rules_from_input
 
 
 def main():
     user_name = input("Enter your name: ")
     print(f"Hello, {user_name}")
-    options = GameOptions(input())
+    options = create_rules_from_input(input())
     print("Okay, let's start")
     score = get_user_score(user_name)
 
