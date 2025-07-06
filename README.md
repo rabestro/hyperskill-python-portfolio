@@ -1,4 +1,4 @@
-![CI](https://img.shields.io/github/actions/workflow/status/rabestro/hyperskill-python-portfolio/quality-checks.yml?branch=main&label=ci)
+![CI](https://img.shields.io/github/actions/workflow/status/rabestro/hyperskill-python-portfolio/ci.yml?branch=main&label=ci)
 ![Python](https://img.shields.io/badge/python-3.11%20|%203.12%20|%203.13-blue)
 ![License](https://img.shields.io/github/license/rabestro/hyperskill-python-portfolio)
 ![Style](https://img.shields.io/badge/code%20style-ruff-blueviolet)
