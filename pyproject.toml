@@ -6,6 +6,7 @@ authors = [
     { name = "Jegors Čemisovs", email = "jegors.cemisovs@gmail.com" },
 ]
 license = "MIT"
+license-files = ["LICENSE"]
 readme = "README.md"
 requires-python = ">=3.11"
 
@@ -17,12 +18,12 @@ classifiers = [
     "Topic :: Education",
 ]
 
-# Project dependencies would go here if there were any common ones.
 dependencies = []
 
 [project.urls]
-"Homepage" = "https://github.com/rabestro/hyperskill-python-portfolio"
-"Repository" = "https://github.com/rabestro/hyperskill-python-portfolio"
+Homepage = "https://github.com/rabestro/hyperskill-python-portfolio"
+Repository = "https://github.com/rabestro/hyperskill-python-portfolio.git"
+Issues = "https://github.com/rabestro/hyperskill-python-portfolio/issues"
 
 [project.optional-dependencies]
 # Dependencies required for development (testing, linting, etc.)
@@ -35,7 +36,6 @@ dev = [
 ### Tooling Configuration ###
 
 [tool.ruff]
-# Target the Python version you're using.
 target-version = "py313"
 line-length = 88
 
