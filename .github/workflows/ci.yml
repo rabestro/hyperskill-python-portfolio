@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.11", "3.12", "3.13"]
+        python-version: [ "3.11", "3.12", "3.13" ]
 
     steps:
       - name: Checkout repository
@@ -39,3 +39,16 @@ jobs:
 
       - name: Run tests with Pytest
         run: uv run pytest
+
+      - name: Install Radon for code metrics
+        run: uv pip install radon
+
+      - name: Cyclomatic Complexity (Radon)
+        run: |
+          echo "### Cyclomatic Complexity Report" >> $GITHUB_STEP_SUMMARY
+          uv run radon cc src/ --total-average -a >> $GITHUB_STEP_SUMMARY
+
+      - name: Maintainability Index (Radon)
+        run: |
+          echo "### Maintainability Index Report" >> $GITHUB_STEP_SUMMARY
+          uv run radon mi src/ >> $GITHUB_STEP_SUMMARY
