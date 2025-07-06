@@ -1,7 +1,7 @@
 import logging
 
-from file_handler import DEFAULT_RATING_FILE, get_user_score
-from game_logic import GameRules, create_rules_from_input
+from .file_handler import DEFAULT_RATING_FILE, get_user_score
+from .game_logic import GameRules, create_rules_from_input
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
