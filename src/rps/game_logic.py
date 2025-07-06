@@ -1,10 +1,12 @@
 import random
 
+DEFAULT_OPTIONS = ("rock", "paper", "scissors")
+
 
 class GameOptions:
     def __init__(self, options: str) -> None:
         if not options:
-            self.options = ("rock", "paper", "scissors")
+            self.options = DEFAULT_OPTIONS
         else:
             self.options = tuple(options.strip().lower().split(","))
 
