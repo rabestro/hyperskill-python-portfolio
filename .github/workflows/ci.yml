@@ -46,9 +46,9 @@ jobs:
       - name: Cyclomatic Complexity (Radon)
         run: |
           echo "### Cyclomatic Complexity Report" >> $GITHUB_STEP_SUMMARY
-          radon cc src/ --total-average -a >> $GITHUB_STEP_SUMMARY
+          uv run radon cc src/ --total-average -a >> $GITHUB_STEP_SUMMARY
 
       - name: Maintainability Index (Radon)
         run: |
           echo "### Maintainability Index Report" >> $GITHUB_STEP_SUMMARY
-          radon mi src/ >> $GITHUB_STEP_SUMMARY
+          uv run radon mi src/ >> $GITHUB_STEP_SUMMARY
