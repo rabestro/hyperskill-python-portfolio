@@ -1,13 +1,27 @@
-from file_handler import get_user_score
+import logging
+
+from file_handler import DEFAULT_RATING_FILE, get_user_score
 from game_logic import create_rules_from_input
 
+logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
-def main():
+
+def main() -> None:
     user_name = input("Enter your name: ")
     print(f"Hello, {user_name}")
     options = create_rules_from_input(input())
     print("Okay, let's start")
-    score = get_user_score(user_name)
+
+    try:
+        score = get_user_score(user_name, file_path=DEFAULT_RATING_FILE)
+    except FileNotFoundError:
+        logging.info(f"{DEFAULT_RATING_FILE} not found. Starting with a score of 0.")
+        score = 0
+    except ValueError as e:
+        logging.warning(
+            f"Could not retrieve score for {user_name}: {e}. Starting with 0."
+        )
+        score = 0
 
     while True:
         match input().lower():

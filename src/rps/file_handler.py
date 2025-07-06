@@ -1,26 +1,32 @@
-RATING_FILE_PATH = "rating.txt"
+DEFAULT_RATING_FILE = "rating.txt"
 
 
-def get_user_score(username):
+def get_user_score(username: str, file_path: str = DEFAULT_RATING_FILE) -> int:
+    """Reads a user's score from a specified file.
+
+    This function opens a file at a given path, searches for a specific
+    username, and returns their score.
+
+    Args:
+        username: The name of the user whose score is to be retrieved.
+        file_path: The path to the file containing user ratings. Defaults
+                   to "rating.txt".
+
+    Returns:
+        The user's score as an integer.
+
+    Raises:
+        FileNotFoundError: If the file at `file_path` cannot be found.
+        ValueError: If a user's score in the file is not a valid integer,
+                    or if a line is malformed.
     """
-    Reads 'rating.txt' to find and return a user's score.
-    Returns 0 if the user is not found or the file doesn't exist.
-    """
-    try:
-        with open(RATING_FILE_PATH) as file:
-            for line in file:
-                parts = line.strip().split()
-                if len(parts) == 2:
-                    name, score = parts
-                    if name == username:
-                        return int(score)
-    except FileNotFoundError:
-        print(f"{RATING_FILE_PATH} not found. Starting with a score of 0.")
-        return 0
-    except ValueError:
-        print(
-            f"Error reading score from {RATING_FILE_PATH}. Starting with a score of 0."
-        )
-        return 0
+    with open(file_path) as file:
+        for line in file:
+            parts = line.strip().split()
+            if len(parts) != 2:
+                continue
 
-    return 0
+            name, score_str = parts
+            if name == username:
+                return int(score_str)  # Let potential ValueError propagate
+    raise ValueError(f"Username '{username}' not found in {file_path}")
