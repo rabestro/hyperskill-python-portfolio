@@ -42,7 +42,6 @@ class Game:
 
             status = session.make_guess(letter)
 
-            # More explicit status checks
             if status == Status.MISS:
                 print(status.value)
                 remaining_attempts -= 1
