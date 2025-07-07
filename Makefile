@@ -44,7 +44,7 @@ install:
 # === Linting and formatting ===
 
 lint:
-	uv run ruff check .
+	uv run ruff check . $(ARGS)
 
 format:
 	uv run ruff format .
@@ -57,7 +57,7 @@ mypy:
 # === Testing ===
 
 test:
-	uv run pytest
+	uv run pytest $(ARGS)
 
 # === Code metrics ===
 
