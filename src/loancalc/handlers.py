@@ -31,12 +31,12 @@ def handle_annuity(args) -> None:
         periods=args.periods,
         interest=args.interest,
     )
-
+    interest = args.interest / (12 * 100)
     if args.payment is None:
-        result = calculate_annuity_payment(input_data)
+        result = calculate_annuity_payment(interest, args.periods, args.principal)
         print(f"Your monthly payment = {result.payment}!")
     elif args.principal is None:
-        result = calculate_annuity_principal(input_data)
+        result = calculate_annuity_principal(interest, args.periods, args.payment)
         print(f"Your loan principal = {result.principal}!")
     else:  # args.periods is None
         result = calculate_annuity_periods(input_data)
