@@ -2,30 +2,35 @@ from math import ceil, log, pow
 
 from .models import LoanInput, LoanResult
 
+MONTHS_IN_YEAR = 12
 
-def calculate_annuity_payment(inp: LoanInput) -> LoanResult:
+
+def calculate_annuity_payment(
+    interest: float, periods: int, principal: int
+) -> LoanResult:
     """Calculates the fixed monthly annuity payment."""
-    i = inp.interest / (12 * 100)
-    compound = pow(1 + i, inp.periods)
-    payment = ceil(inp.principal * (i * compound) / (compound - 1))
-    overpayment = payment * inp.periods - inp.principal
+    compound = pow(1 + interest, periods)
+    payment = ceil(principal * (interest * compound) / (compound - 1))
+    overpayment = payment * periods - principal
     return LoanResult(payment=payment, overpayment=overpayment)
 
 
-def calculate_annuity_principal(inp: LoanInput) -> LoanResult:
+def calculate_annuity_principal(
+    interest: float, periods: int, payment: int
+) -> LoanResult:
     """Calculates the loan principal based on an annuity payment."""
-    i = inp.interest / (12 * 100)
-    compound = pow(1 + i, inp.periods)
-    principal = inp.payment / ((i * compound) / (compound - 1))
-    overpayment = inp.payment * inp.periods - principal
+    compound = pow(1 + interest, periods)
+    principal = payment / ((interest * compound) / (compound - 1))
+    overpayment = payment * periods - principal
     return LoanResult(principal=int(principal), overpayment=ceil(overpayment))
 
 
-def calculate_annuity_periods(inp: LoanInput) -> LoanResult:
+def calculate_annuity_periods(
+    interest: float, principal: int, payment: int
+) -> LoanResult:
     """Calculates the number of periods to repay an annuity loan."""
-    i = inp.interest / (12 * 100)
-    n = ceil(log(inp.payment / (inp.payment - i * inp.principal), 1 + i))
-    years, months = divmod(n, 12)
+    periods = ceil(log(payment / (payment - interest * principal), 1 + interest))
+    years, months = divmod(periods, MONTHS_IN_YEAR)
 
     parts = []
     if years:
@@ -34,8 +39,8 @@ def calculate_annuity_periods(inp: LoanInput) -> LoanResult:
         parts.append(f"{months} month{'s' if months != 1 else ''}")
 
     description = " and ".join(parts)
-    overpayment = inp.payment * n - inp.principal
-    return LoanResult(periods=n, overpayment=overpayment, description=description)
+    overpayment = payment * periods - principal
+    return LoanResult(periods=periods, overpayment=overpayment, description=description)
 
 
 def calculate_diff(inp: LoanInput) -> LoanResult:
