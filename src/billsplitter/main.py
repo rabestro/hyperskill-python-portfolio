@@ -7,7 +7,7 @@ def get_friend_names(count: int) -> list[str]:
     return [input() for _ in range(count)]
 
 
-def run() -> None:
+def main() -> None:
     """Main function to run the bill splitter."""
     try:
         n_friends = int(input("Enter the number of friends joining (including you):"))
@@ -52,4 +52,4 @@ def run() -> None:
 
 
 if __name__ == "__main__":
-    run()
+    main()

@@ -34,6 +34,13 @@ dev = [
     "pytest>=8.4.1",
 ]
 
+[project.scripts]
+loancalc = "loancalc.main:main"
+hangman = "hangman.main:main"
+rps = "rps.main:main"
+billsplitter = "billsplitter.main:main"
+chatbot = "chatbot.main:main"
+
 ### Tooling Configuration ###
 
 [tool.ruff]
@@ -77,3 +84,11 @@ addopts = "-ra -q --strict-markers"
 exclude = ["tests", "docs"]
 cc_min = "B"
 mi_min = 70
+
+[[tool.uv.index]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+publish-url = "https://test.pypi.org/legacy/"
+
+[tool.uv]
+index-strategy = "unsafe-best-match"
