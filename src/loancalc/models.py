@@ -1,17 +1,9 @@
-from dataclasses import dataclass
-
-
-@dataclass
-class LoanInput:
-    principal: int | None = None
-    payment: int | None = None
-    periods: int | None = None
-    interest: float = 0.0
+from dataclasses import dataclass, field
 
 
 @dataclass
 class LoanResult:
-    payments: list[int] | None = None
+    payments: list[int] = field(default_factory=list)
     payment: int | None = None
     periods: int | None = None
     principal: int | None = None

@@ -1,4 +1,5 @@
 import sys
+from argparse import Namespace
 
 from loancalc.core import (
     calculate_annuity_payment,
@@ -6,10 +7,9 @@ from loancalc.core import (
     calculate_annuity_principal,
     calculate_diff,
 )
-from loancalc.models import LoanInput
 
 
-def handle_annuity(args) -> None:
+def handle_annuity(args: Namespace) -> None:
     """
     Handles the 'annuity' command.
 
@@ -25,12 +25,6 @@ def handle_annuity(args) -> None:
         )
         sys.exit(1)
 
-    input_data = LoanInput(
-        principal=args.principal,
-        payment=args.payment,
-        periods=args.periods,
-        interest=args.interest,
-    )
     interest = args.interest / (12 * 100)
     if args.payment is None:
         result = calculate_annuity_payment(interest, args.periods, args.principal)
@@ -39,13 +33,13 @@ def handle_annuity(args) -> None:
         result = calculate_annuity_principal(interest, args.periods, args.payment)
         print(f"Your loan principal = {result.principal}!")
     else:  # args.periods is None
-        result = calculate_annuity_periods(input_data)
+        result = calculate_annuity_periods(interest, args.principal, args.payment)
         print(f"It will take {result.description} to repay this loan!")
 
     print(f"Overpayment = {result.overpayment}")
 
 
-def handle_diff(args) -> None:
+def handle_diff(args: Namespace) -> None:
     """
 
     Handles the 'diff' (differentiated) command.
@@ -60,13 +54,7 @@ def handle_diff(args) -> None:
         )
         sys.exit(1)
 
-    input_data = LoanInput(
-        principal=args.principal,
-        periods=args.periods,
-        interest=args.interest,
-    )
-
-    result = calculate_diff(input_data)
+    result = calculate_diff(args.interest / (12 * 100), args.periods, args.principal)
     for month, payment in enumerate(result.payments, start=1):
         print(f"Month {month}: payment is {payment}")
     print(f"\nOverpayment = {result.overpayment}")

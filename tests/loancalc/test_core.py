@@ -4,7 +4,6 @@ from loancalc.core import (
     calculate_annuity_principal,
     calculate_diff,
 )
-from loancalc.models import LoanInput
 
 
 def test_annuity_payment():
@@ -31,7 +30,7 @@ def test_annuity_periods():
 
 def test_diff():
     """Tests the calculation of differentiated payments."""
-    res = calculate_diff(LoanInput(principal=1000000, periods=10, interest=10))
+    res = calculate_diff(10 / 1200, 10, 1000000)
     assert len(res.payments) == 10
     assert res.payments[0] > res.payments[-1]
     assert res.overpayment == sum(res.payments) - 1000000
