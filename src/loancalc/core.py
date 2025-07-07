@@ -14,9 +14,6 @@ def calculate_annuity_payment(inp: LoanInput) -> LoanResult:
 
 def calculate_annuity_principal(inp: LoanInput) -> LoanResult:
     """Calculates the loan principal based on an annuity payment."""
-    # principal = payment / (
-    #         (interest * pow(1 + interest, periods)) / (pow(1 + interest, periods) - 1)
-    #     )
     i = inp.interest / (12 * 100)
     compound = pow(1 + i, inp.periods)
     principal = inp.payment / ((i * compound) / (compound - 1))
