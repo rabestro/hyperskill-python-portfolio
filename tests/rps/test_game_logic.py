@@ -1,4 +1,4 @@
-from src.rps.game_logic import GameRules
+from rps.game_logic import GameRules
 
 
 def test_classic_rock_paper_scissors():
