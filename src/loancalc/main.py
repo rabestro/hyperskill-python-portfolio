@@ -6,7 +6,15 @@ import sys
 
 
 def non_negative_float(value: str) -> float:
-    """Custom argparse type for non-negative floats."""
+    """
+    Parse a string as a non-negative float for argument validation.
+    
+    Raises:
+        argparse.ArgumentTypeError: If the value cannot be converted to float or is negative.
+    
+    Returns:
+        float: The parsed non-negative float value.
+    """
     try:
         f_value = float(value)
     except ValueError:
@@ -18,7 +26,15 @@ def non_negative_float(value: str) -> float:
 
 
 def non_negative_int(value: str) -> int:
-    """Custom argparse type for non-negative integers."""
+    """
+    Parse a string as a non-negative integer for argument validation.
+    
+    Raises:
+        argparse.ArgumentTypeError: If the value is not a valid integer or is negative.
+    
+    Returns:
+        int: The parsed non-negative integer.
+    """
     try:
         i_value = int(value)
     except ValueError:
@@ -34,6 +50,17 @@ def non_negative_int(value: str) -> int:
 
 
 def calculate_payment(principal: int, interest: float, periods: int) -> None:
+    """
+    Calculate and display the monthly annuity payment and overpayment for a loan.
+    
+    Parameters:
+        principal (int): The initial loan amount.
+        interest (float): The monthly interest rate as a decimal (e.g., 0.01 for 1%).
+        periods (int): The total number of monthly payments.
+    
+    Prints:
+        The calculated monthly payment (rounded up) and the total overpayment.
+    """
     payment = math.ceil(
         principal
         * (interest * pow(1 + interest, periods))
@@ -45,6 +72,11 @@ def calculate_payment(principal: int, interest: float, periods: int) -> None:
 
 
 def calculate_principal(payment: int, interest: float, periods: int) -> None:
+    """
+    Calculate and display the loan principal based on monthly payment, interest rate, and number of periods.
+    
+    Prints the calculated principal (rounded down) and the overpayment (rounded up).
+    """
     principal = payment / (
         (interest * pow(1 + interest, periods)) / (pow(1 + interest, periods) - 1)
     )
@@ -54,6 +86,11 @@ def calculate_principal(payment: int, interest: float, periods: int) -> None:
 
 
 def calculate_periods(payment: int, interest: float, principal: int) -> None:
+    """
+    Calculate and display the number of months required to repay a loan given the monthly payment, interest rate, and principal.
+    
+    Prints the repayment duration in years and months, as well as the total overpayment.
+    """
     months = math.ceil(
         math.log(payment / (payment - interest * principal), 1 + interest)
     )
@@ -71,6 +108,16 @@ def calculate_periods(payment: int, interest: float, principal: int) -> None:
 
 
 def calculate_diff_payment(principal: int, interest: float, periods: int) -> None:
+    """
+    Calculate and print the differentiated monthly payments for a loan, along with the total overpayment.
+    
+    Parameters:
+        principal (int): The initial loan amount.
+        interest (float): The monthly interest rate as a decimal (e.g., 0.01 for 1%).
+        periods (int): The total number of monthly payments.
+    
+    Each month's payment is calculated and printed individually. After all payments, the function prints the total overpayment compared to the principal.
+    """
     total_payment = 0
     for month in range(1, periods + 1):
         diff_payment = math.ceil(
@@ -87,13 +134,22 @@ def calculate_diff_payment(principal: int, interest: float, periods: int) -> Non
 
 
 def handle_diff(args: argparse.Namespace) -> None:
-    """Handler for the 'diff' command."""
+    """
+    Handles the 'diff' command by converting the annual interest rate to a monthly rate and calculating differentiated loan payments.
+    
+    Parameters:
+        args (argparse.Namespace): Parsed command-line arguments containing principal, periods, and interest.
+    """
     i = args.interest / (12 * 100)
     calculate_diff_payment(args.principal, i, args.periods)
 
 
 def handle_annuity(args: argparse.Namespace) -> None:
-    """Handler for the 'annuity' command."""
+    """
+    Handles the 'annuity' command by determining and calculating the missing loan parameter (payment, principal, or periods) based on provided arguments.
+    
+    Validates that exactly one of payment, principal, or periods is omitted, converts the annual interest rate to a monthly rate, and invokes the appropriate calculation function. Exits with an error if argument validation fails.
+    """
     # The logic to determine which value to calculate is now inside the
     # command handler, making the main function cleaner.
     known_args = [args.payment, args.principal, args.periods]
@@ -121,6 +177,11 @@ def handle_annuity(args: argparse.Namespace) -> None:
 
 
 def main() -> None:
+    """
+    Entry point for the loan calculator CLI application.
+    
+    Sets up command-line argument parsing for differentiated and annuity loan calculations, validates input, and dispatches to the appropriate calculation handler based on user input.
+    """
     parser = argparse.ArgumentParser(
         description="A versatile loan calculator.",
         formatter_class=argparse.RawTextHelpFormatter,  # Improves help text formatting

@@ -2,13 +2,25 @@ import random
 
 
 def get_friend_names(count: int) -> list[str]:
-    """Gets a list of names from user input."""
+    """
+    Prompt the user to enter names for the specified number of friends.
+    
+    Parameters:
+        count (int): The number of friend names to collect.
+    
+    Returns:
+        list[str]: A list containing the entered friend names.
+    """
     print("Enter the name of every friend (including you), each on a new line:")
     return [input() for _ in range(count)]
 
 
 def main() -> None:
-    """Main function to run the bill splitter."""
+    """
+    Runs the interactive bill splitting program, optionally selecting a "lucky" friend who pays nothing.
+    
+    Prompts the user for the number of friends, their names, and the total bill amount. Offers an option to randomly select one friend to be exempt from paying, with the remaining friends splitting the bill evenly. Prints the resulting bill distribution.
+    """
     try:
         n_friends = int(input("Enter the number of friends joining (including you):"))
     except ValueError:
