@@ -2,23 +2,44 @@
 
 .DEFAULT_GOAL := help
 
-# Source and test directories
-SRC=src
-TESTS=tests
+# Variable for passing command-line arguments to run targets
+ARGS ?=
 
 # === Help ===
 
 help:
 	@echo "Available commands:"
-	@echo "  make install     - Install development dependencies"
-	@echo "  make lint        - Run Ruff linter"
-	@echo "  make format      - Run Ruff formatter"
-	@echo "  make mypy        - Run mypy type checker"
-	@echo "  make test        - Run pytest"
-	@echo "  make cc          - Cyclomatic complexity analysis (Radon)"
-	@echo "  make mi          - Maintainability index report (Radon)"
-	@echo "  make quality     - Run lint, mypy, and Radon metrics"
-	@echo "  make check       - Run all checks: lint, format, mypy, test, metrics"
+	@echo ""
+	@echo "  \033[1mUsage\033[0m: make [target]"
+	@echo ""
+	@echo "  \033[1mInstallation\033[0m:"
+	@echo "    install          - Install project dependencies for development"
+	@echo ""
+	@echo "  \033[1mQuality & Testing\033[0m:"
+	@echo "    lint             - Run Ruff linter"
+	@echo "    format           - Run Ruff formatter"
+	@echo "    mypy             - Run mypy type checker"
+	@echo "    test             - Run pytest"
+	@echo "    cc               - Report cyclomatic complexity"
+	@echo "    mi               - Report maintainability index"
+	@echo "    quality          - Run all static analysis checks (lint, mypy, radon)"
+	@echo "    check            - Run all checks including tests and build"
+	@echo ""
+	@echo "  \033[1mBuild & Distribution\033[0m:"
+	@echo "    build            - Build the wheel and sdist packages"
+	@echo "    publish          - Publish the package to PyPI"
+	@echo "    clean            - Remove build artifacts and temporary files"
+	@echo ""
+	@echo "  \033[1mProject Execution\033[0m:"
+	@echo "    run-<app>        - Run a specific application (e.g., make run-loancalc)"
+	@echo ""
+	@echo "  \033[1mNote\033[0m: For execution targets, pass arguments via ARGS, e.g.:"
+	@echo "    make run-loancalc ARGS=\"annuity --principal 100k\""
+
+# === Installation ===
+
+install:
+	uv pip install -e .[dev]
 
 # === Linting and formatting ===
 
@@ -31,7 +52,7 @@ format:
 # === Static typing ===
 
 mypy:
-	uv run mypy $(SRC)
+	uv run mypy src/
 
 # === Testing ===
 
@@ -41,20 +62,41 @@ test:
 # === Code metrics ===
 
 cc:
-	uv run radon cc $(SRC) --total-average -a
+	uv run radon cc src/ --show-complexity --average --total-average
 
 mi:
-	uv run radon mi $(SRC)
+	uv run radon mi --show --sort src/
+
+# === Build and Publishing ===
+
+build:
+	@echo "📦 Building wheel and sdist with uv into dist/..."
+	@uv build
+
+publish-test:
+	@echo "🚀 Publishing artifacts to TestPyPI..."
+	@uv publish --index testpypi
+
+publish:
+	@echo "🚀 Publishing artifacts to PyPI..."
+	@uv publish
+
+clean:
+	@echo "🧹 Cleaning up build artifacts..."
+	@rm -rf build dist src/*.egg-info
+
+# === Project Execution ===
+# Use a pattern rule to handle all 'run-*' targets dynamically.
+# Example: make run-loancalc ARGS="..."
+
+run-%:
+	@uv run $* $(ARGS)
+
+# === Quality Aggregation ===
 
 quality: lint mypy cc mi
 
-# === Installation ===
+check: quality test build
 
-install:
-	uv pip install -e .[dev]
-
-# === Full check ===
-
-check: lint format mypy test cc mi
-
-.PHONY: help lint format mypy test cc mi quality install check
+.PHONY: help install lint format mypy test cc mi quality check build publish clean
+.PHONY: run-loancalc run-hangman run-rps run-billsplitter run-chatbot
