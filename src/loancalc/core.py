@@ -45,18 +45,16 @@ def calculate_annuity_periods(
 
 def calculate_diff(interest: float, periods: int, principal: int) -> LoanResult:
     """Calculates all monthly payments for a differentiated loan."""
-    total_payment = 0
-    payments: list[int] = []
 
-    for m in range(1, periods + 1):
-        # Simplified the formula for clarity
-        principal_paid = principal * (m - 1) / periods
-        remaining_principal = principal - principal_paid
+    payments_generator = (
+        ceil(
+            (principal / periods)
+            + (interest * (principal - (principal * (m - 1) / periods)))
+        )
+        for m in range(1, periods + 1)
+    )
 
-        diff_payment = ceil((principal / periods) + (interest * remaining_principal))
+    payments = list(payments_generator)
+    overpayment = sum(payments) - principal
 
-        payments.append(diff_payment)
-        total_payment += diff_payment
-
-    overpayment = total_payment - principal
     return LoanResult(payments=payments, overpayment=overpayment)

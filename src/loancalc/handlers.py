@@ -2,6 +2,7 @@ import sys
 from argparse import Namespace
 
 from loancalc.core import (
+    MONTHS_IN_YEAR,
     calculate_annuity_payment,
     calculate_annuity_periods,
     calculate_annuity_principal,
@@ -9,7 +10,12 @@ from loancalc.core import (
 )
 
 
-def handle_annuity(args: Namespace) -> None:
+def monthly_interest(annual_interest: float) -> float:
+    """Calculates the monthly interest rate from the annual interest rate."""
+    return annual_interest / (MONTHS_IN_YEAR * 100)
+
+
+def handle_annuity(args: Namespace) -> str:
     """
     Handles the 'annuity' command.
 
@@ -25,21 +31,21 @@ def handle_annuity(args: Namespace) -> None:
         )
         sys.exit(1)
 
-    interest = args.interest / (12 * 100)
+    interest = monthly_interest(args.interest)
     if args.payment is None:
         result = calculate_annuity_payment(interest, args.periods, args.principal)
-        print(f"Your monthly payment = {result.payment}!")
+        main_message = f"Your monthly payment = {result.payment}!"
     elif args.principal is None:
         result = calculate_annuity_principal(interest, args.periods, args.payment)
-        print(f"Your loan principal = {result.principal}!")
+        main_message = f"Your loan principal = {result.principal}!"
     else:  # args.periods is None
         result = calculate_annuity_periods(interest, args.principal, args.payment)
-        print(f"It will take {result.description} to repay this loan!")
+        main_message = f"It will take {result.description} to repay this loan!"
 
-    print(f"Overpayment = {result.overpayment}")
+    return main_message + f"\nOverpayment = {result.overpayment}"
 
 
-def handle_diff(args: Namespace) -> None:
+def handle_diff(args: Namespace) -> str:
     """
 
     Handles the 'diff' (differentiated) command.
@@ -54,7 +60,13 @@ def handle_diff(args: Namespace) -> None:
         )
         sys.exit(1)
 
-    result = calculate_diff(args.interest / (12 * 100), args.periods, args.principal)
-    for month, payment in enumerate(result.payments, start=1):
-        print(f"Month {month}: payment is {payment}")
-    print(f"\nOverpayment = {result.overpayment}")
+    interest = monthly_interest(args.interest)
+    result = calculate_diff(interest, args.periods, args.principal)
+
+    return (
+        "\n".join(
+            f"Month {month}: payment is {payment}"
+            for month, payment in enumerate(result.payments, start=1)
+        )
+        + f"\nOverpayment = {result.overpayment}"
+    )
