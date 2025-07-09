@@ -1,6 +1,6 @@
 [project]
 name = "hyperskill-python-portfolio"
-version = "0.1.0"
+version = "0.1.1"
 description = "My journey through Hyperskill, captured in a portfolio of Python projects. Each solution is refactored for quality, tested with pytest, and statically checked with mypy."
 authors = [
     { name = "Jegors Čemisovs", email = "jegors.cemisovs@gmail.com" },
