@@ -1,35 +1,63 @@
-# See https://pre-commit.com for more information
-# See https://pre-commit.com/hooks.html for more hooks
 repos:
-  # --- Standard hooks for basic file hygiene ---
+  # ==============================================================================
+  # Language-Agnostic Hooks (General file health)
+  # ==============================================================================
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
-      - id: trailing-whitespace  # Trims trailing whitespace
-      - id: end-of-file-fixer   # Ensures files end in a newline
-      - id: check-yaml          # Checks YAML files for syntax errors
-      - id: check-toml          # Checks TOML files for syntax errors
-      - id: check-added-large-files # Prevents committing large files
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: [ --allow-multiple-documents ]
+        exclude: ^mkdocs\.yml$
+      - id: check-toml
+      - id: check-added-large-files
+        args: [ --maxkb=2048 ]
+      - id: check-merge-conflict
       - id: mixed-line-ending
-        args: [--fix=lf]
+        args: [ --fix=lf ]
 
-  # --- Ruff: The all-in-one linter and formatter ---
+  # ==============================================================================
+  # Security Scanning (Prevent committing secrets)
+  # ==============================================================================
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.27.2
+    hooks:
+      - id: gitleaks
+
+  # ==============================================================================
+  # Python Formatting & Linting (Standardized on Ruff)
+  # ==============================================================================
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.12.2
     hooks:
-      # Run the linter
-      - id: ruff
-        args: [ --fix ] # Automatically fix what it can
-      # Run the formatter
+      - id: ruff-check
+        name: ruff-linter
+        args: [ --fix ]
       - id: ruff-format
+        name: ruff-formatter
 
-  # --- MyPy: The static type checker ---
-#  - repo: https://github.com/pre-commit/mirrors-mypy
-#    rev: v1.16.1
-#    hooks:
-#      - id: mypy
-#        args: [ --config-file=pyproject.toml ]
-#        additional_dependencies: [
-#          # Add any libraries that mypy needs to understand here
-#          # For example: types-requests
-#        ]
+  # =================================_=============================================
+  # Documentation & Text File Linting
+  # ==============================================================================
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+      - id: codespell
+        args:
+          - --ignore-words-list=nd,re,te,ths,fo # Add words to ignore if needed
+          - --skip=*.lock,*.json # Skip files that often have "misspelled" technical words
+
+  # ==============================================================================
+  # Local, Project-Specific Hooks (Requires local environment setup)
+  # ==============================================================================
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy
+        description: "Static type checking for Python code."
+        language: python
+        entry: uv run mypy ./src
+        types: [ python ]
+        require_serial: true
+        pass_filenames: false
