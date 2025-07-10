@@ -99,4 +99,5 @@ quality: lint mypy cc mi
 check: quality test build
 
 .PHONY: help install lint format mypy test cc mi quality check build publish clean
-.PHONY: run-loancalc run-hangman run-rps run-billsplitter run-chatbot
+.PHONY: run-loancalc run-hangman run-rps run-billsplitter run-chatbot run-zookeeper
+.PHONY: run-corner_shop_calculator
