@@ -3,13 +3,15 @@ from unittest.mock import patch
 
 import pytest
 
-from loancalc.handlers import handle_annuity, handle_diff
-from loancalc.models import LoanResult
+from hyperskill_python_portfolio.loancalc.handlers import handle_annuity, handle_diff
+from hyperskill_python_portfolio.loancalc.models import LoanResult
 
-CALCULATE_ANNUITY_PAYMENT_PATH = "loancalc.handlers.calculate_annuity_payment"
-CALCULATE_ANNUITY_PRINCIPAL_PATH = "loancalc.handlers.calculate_annuity_principal"
-CALCULATE_ANNUITY_PERIODS_PATH = "loancalc.handlers.calculate_annuity_periods"
-CALCULATE_DIFF_PATH = "loancalc.handlers.calculate_diff"
+# Corrected paths to include the full package namespace
+BASE_PATH = "hyperskill_python_portfolio.loancalc.handlers"
+CALCULATE_ANNUITY_PAYMENT_PATH = f"{BASE_PATH}.calculate_annuity_payment"
+CALCULATE_ANNUITY_PRINCIPAL_PATH = f"{BASE_PATH}.calculate_annuity_principal"
+CALCULATE_ANNUITY_PERIODS_PATH = f"{BASE_PATH}.calculate_annuity_periods"
+CALCULATE_DIFF_PATH = f"{BASE_PATH}.calculate_diff"
 
 
 def test_handle_annuity_calculates_payment() -> None:
