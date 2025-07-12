@@ -38,6 +38,9 @@ dev = [
 docs = [
     "mkdocs",
     "mkdocs-material",
+    "mkdocs-gen-files",
+    "mkdocs-literate-nav",
+#    "mkdocstrings-python"
 ]
 
 # The script entry points must now include the top-level package namespace.
