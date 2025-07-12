@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 
+#: A tuple containing the default game options in winning order.
 DEFAULT_OPTIONS = ("rock", "paper", "scissors")
 
 
@@ -50,9 +51,7 @@ class GameRules:
         p1_shifted_index = (p1_index + delta) % length
         p2_shifted_index = (self.options.index(player_2_choice) + delta) % length
 
-        # After the shift, if p2's index is less than p1's, p2 is in the
-        # "losing half" of the circle relative to p1.
-        return -1 if p1_shifted_index > p2_shifted_index else 1
+        return 1 if p1_shifted_index > p2_shifted_index else -1
 
 
 def create_rules_from_input(options_str: str) -> GameRules:
