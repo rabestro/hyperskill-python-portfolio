@@ -33,6 +33,10 @@ dev = [
     "radon",
     "pytest>=8.4.1",
 ]
+docs = [
+    "mkdocs",
+    "mkdocs-material",
+]
 
 [project.scripts]
 loancalc = "loancalc.main:main"
@@ -49,13 +53,12 @@ line-length = 88
 
 # For `ruff check` (linting)
 [tool.ruff.lint]
-# A good starting set of rules:
 # E/F: pyflakes/pycodestyle errors (essential)
 # I: isort (import sorting)
 # UP: pyupgrade (modernize code)
 # B: flake8-bugbear (potential bugs)
 # C4: flake8-comprehensions (more idiomatic comprehensions)
-select = ["E", "F", "I", "UP", "B", "C4"]
+select = ["E", "F", "I", "UP", "B", "C4", "D", "TID", "RUF"]
 ignore = []
 
 [tool.ruff.lint.pydocstyle]
