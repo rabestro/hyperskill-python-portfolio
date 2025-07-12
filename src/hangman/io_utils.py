@@ -1,3 +1,5 @@
+"""Provides utility functions for handling user input."""
+
 from .models import MenuOption
 
 

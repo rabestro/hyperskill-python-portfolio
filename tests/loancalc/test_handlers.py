@@ -12,10 +12,7 @@ CALCULATE_ANNUITY_PERIODS_PATH = "loancalc.handlers.calculate_annuity_periods"
 CALCULATE_DIFF_PATH = "loancalc.handlers.calculate_diff"
 
 
-def test_handle_annuity_calculates_payment():
-    """
-    Verify handle_annuity calls calculate_annuity_payment and formats the output.
-    """
+def test_handle_annuity_calculates_payment() -> None:
     # Arrange: Setup arguments and the mock for the core function
     args = Namespace(principal=500000, periods=360, interest=7.5, payment=None)
     mock_result = LoanResult(payment=3497, overpayment=758920)
@@ -34,10 +31,7 @@ def test_handle_annuity_calculates_payment():
     assert result_string == expected_string
 
 
-def test_handle_annuity_calculates_principal():
-    """
-    Verify handle_annuity calls calculate_annuity_principal and formats the output.
-    """
+def test_handle_annuity_calculates_principal() -> None:
     # Arrange
     args = Namespace(payment=3500, periods=360, interest=7.5, principal=None)
     mock_result = LoanResult(principal=500418, overpayment=759582)
@@ -56,10 +50,7 @@ def test_handle_annuity_calculates_principal():
     assert result_string == expected_string
 
 
-def test_handle_annuity_invalid_args_exits():
-    """
-    Verify handle_annuity exits if the wrong number of arguments are provided.
-    """
+def test_handle_annuity_invalid_args_exits() -> None:
     # Arrange: All arguments are provided, which is an error
     args = Namespace(payment=3500, periods=360, interest=7.5, principal=500000)
 
@@ -70,10 +61,7 @@ def test_handle_annuity_invalid_args_exits():
     assert e.value.code == 1
 
 
-def test_handle_diff_calculates_payments():
-    """
-    Verify handle_diff calls calculate_diff and formats the multi-line output.
-    """
+def test_handle_diff_calculates_payments() -> None:
     # Arrange
     args = Namespace(principal=500000, periods=12, interest=10, payment=None)
     mock_payments = [43750, 43403, 43056]  # Sample payments
@@ -90,16 +78,13 @@ def test_handle_diff_calculates_payments():
     expected_string = (
         "Month 1: payment is 43750\n"
         "Month 2: payment is 43403\n"
-        "Month 3: payment is 43056\n"
+        "Month 3: payment is 43056\n\n"
         "Overpayment = 27083"
     )
     assert result_string == expected_string
 
 
-def test_handle_diff_with_payment_arg_exits():
-    """
-    Verify handle_diff exits if the disallowed --payment argument is given.
-    """
+def test_handle_diff_with_payment_arg_exits() -> None:
     # Arrange
     args = Namespace(principal=500000, periods=12, interest=10, payment=1000)
 

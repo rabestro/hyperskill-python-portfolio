@@ -1,3 +1,5 @@
+"""This module contains the main Game class that orchestrates the application."""
+
 import random
 from typing import Final
 
@@ -6,16 +8,17 @@ from .models import GameStatistics, HangmanSession, MenuOption, Status
 
 
 class Game:
-    """Manages the application flow and state."""
+    """Manages the application flow, game state, and user statistics."""
 
     WORD_BANK: Final[tuple[str, ...]] = ("python", "java", "swift", "javascript")
     MAX_ATTEMPTS: Final[int] = 8
 
     def __init__(self) -> None:
+        """Initializes the game with a new set of statistics."""
         self.statistics = GameStatistics()
 
     def run(self) -> None:
-        """Start the main game loop."""
+        """Starts the main game loop and handles menu navigation."""
         print("H A N G M A N")
         while True:
             match get_menu_command():

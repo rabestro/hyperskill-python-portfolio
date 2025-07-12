@@ -1,3 +1,5 @@
+"""Configures the command-line interface for the loan calculator."""
+
 import argparse
 
 from .handlers import handle_annuity, handle_diff
@@ -8,7 +10,6 @@ def non_negative_int(value: str) -> int:
     try:
         ivalue = int(value)
         if ivalue < 0:
-            # Raise the same error type for a consistent exception message.
             raise ValueError
         return ivalue
     except ValueError:
@@ -62,10 +63,8 @@ def build_parser() -> argparse.ArgumentParser:
         "--interest",
         type=non_negative_float,
         required=True,
-        help="Annual interest rate (%)",
+        help="Annual interest rate (%%)",
     )
-    # Suppress the --payment argument for the 'diff' command
-    parser_diff.add_argument("--payment", help=argparse.SUPPRESS)
     parser_diff.set_defaults(func=handle_diff)
 
     # --- 'annuity' command parser ---
@@ -92,7 +91,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--interest",
         type=non_negative_float,
         required=True,
-        help="Annual interest rate (%)",
+        help="Annual interest rate (%%)",
     )
     parser_annuity.set_defaults(func=handle_annuity)
 

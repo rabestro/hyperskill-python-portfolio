@@ -1,4 +1,4 @@
-name: Publish to TestPyPI
+name: Publish to PyPI
 
 on:
   release:
@@ -23,7 +23,7 @@ jobs:
       - name: Build the package
         run: uv build
 
-      - name: Publish to TestPyPI
+      - name: Publish to PyPI
         env:
-          UV_PUBLISH_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
-        run: uv publish --index testpypi
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        run: uv publish
