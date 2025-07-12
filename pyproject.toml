@@ -1,6 +1,7 @@
 [project]
 name = "hyperskill-python-portfolio"
-version = "0.3.0"
+# The version is now dynamic and will be determined by setuptools-scm from Git tags.
+dynamic = ["version"]
 description = "My journey through Hyperskill, captured in a portfolio of Python projects. Each solution is refactored for quality, tested with pytest, and statically checked with mypy."
 authors = [
     { name = "Jegors Čemisovs", email = "jegors.cemisovs@gmail.com" },
@@ -18,9 +19,9 @@ classifiers = [
     "Intended Audience :: Developers",
     "Topic :: Education",
 ]
-dependencies = [
-    "setuptools-scm>=8.0",
-]
+# Runtime dependencies should be empty unless your scripts require a library to run.
+# setuptools-scm is a build dependency, not a runtime one.
+dependencies = []
 
 [project.urls]
 Homepage = "https://github.com/rabestro/hyperskill-python-portfolio"
@@ -39,13 +40,14 @@ docs = [
     "mkdocs-material",
 ]
 
+# The script entry points must now include the top-level package namespace.
 [project.scripts]
-loancalc = "loancalc.main:main"
-hangman = "hangman.main:main"
-rps = "rps.main:main"
-billsplitter = "billsplitter.main:main"
-chatbot = "chatbot.main:main"
-zookeeper = "zookeeper.main:main"
+loancalc = "hyperskill_python_portfolio.loancalc.main:main"
+hangman = "hyperskill_python_portfolio.hangman.main:main"
+rps = "hyperskill_python_portfolio.rps.main:main"
+billsplitter = "hyperskill_python_portfolio.billsplitter.main:main"
+chatbot = "hyperskill_python_portfolio.chatbot.main:main"
+zookeeper = "hyperskill_python_portfolio.zookeeper.main:main"
 
 # ==============================================================================
 # Tooling Configuration
@@ -125,10 +127,9 @@ mi_min = 70
 # ==============================================================================
 
 [build-system]
-requires = ["setuptools>=61.0", "setuptools-scm>=8.0"]
+requires = ["setuptools>=80.0", "setuptools-scm>=8.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
-# This will create a src/your_project/_version.py file.
-# This is optional but good practice.
+# This path is correct for your new structure.
 write_to = "src/hyperskill_python_portfolio/_version.py"
