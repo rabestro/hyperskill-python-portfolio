@@ -64,6 +64,13 @@ ignore = []
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "D100", # Missing docstring in public module
+    "D103", # Missing docstring in public function
+    "D104", # Missing docstring in public package
+]
+
 # For `ruff format` (replaces Black)
 [tool.ruff.format]
 quote-style = "double"
