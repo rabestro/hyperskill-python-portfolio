@@ -18,7 +18,9 @@ classifiers = [
     "Intended Audience :: Developers",
     "Topic :: Education",
 ]
-dependencies = []
+dependencies = [
+    "setuptools-scm>=8.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/rabestro/hyperskill-python-portfolio"
@@ -117,3 +119,16 @@ addopts = "-ra -q --strict-markers"
 exclude = ["tests", "docs"]
 cc_min = "B"
 mi_min = 70
+
+# ==============================================================================
+# Build System Configuration
+# ==============================================================================
+
+[build-system]
+requires = ["setuptools>=61.0", "setuptools-scm>=8.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+# This will create a src/your_project/_version.py file.
+# This is optional but good practice.
+write_to = "src/hyperskill_python_portfolio/_version.py"
