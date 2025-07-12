@@ -64,6 +64,6 @@ jobs:
       - name: Generate Code Metrics Reports
         run: |
           echo "### Cyclomatic Complexity Report" >> $GITHUB_STEP_SUMMARY
-          uv run radon cc src/ --total-average -a >> $GITHUB_STEP_SUMMARY
+          uv run radon cc src/ --show-complexity --average --total-average --md >> $GITHUB_STEP_SUMMARY
           echo "### Maintainability Index Report" >> $GITHUB_STEP_SUMMARY
           uv run radon mi src/ >> $GITHUB_STEP_SUMMARY
