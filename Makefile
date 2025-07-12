@@ -81,9 +81,27 @@ publish:
 	@echo "🚀 Publishing artifacts to PyPI..."
 	@uv publish
 
+# The "super-clean" or "distclean" pattern is sometimes used for a more
+# aggressive cleanup that also removes the virtual environment, but our
+# current `clean` is safer for typical development workflows.
 clean:
-	@echo "🧹 Cleaning up build artifacts..."
-	@rm -rf build dist src/*.egg-info
+	@echo "🧹 Cleaning up build artifacts, caches, and temporary files..."
+	# Remove Python cache files and compiled bytecode
+	@find . -type f -name '*.pyc' -delete
+	@find . -type d -name '__pycache__' -exec rm -rf {} +
+
+	# Remove build artifacts
+	@rm -rf dist/ build/ *.egg-info/ .eggs/
+
+	# Remove test and coverage reports/caches
+	@rm -rf .pytest_cache/ .coverage
+
+	# Remove static analysis and formatter caches
+	@rm -rf .mypy_cache/ .ruff_cache/
+
+	# Remove OS-specific metadata (like macOS .DS_Store)
+	@find . -name '.DS_Store' -type f -delete
+
 
 # === Project Execution ===
 # Use a pattern rule to handle all 'run-*' targets dynamically.
