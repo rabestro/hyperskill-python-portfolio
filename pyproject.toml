@@ -66,7 +66,8 @@ publish-url = "https://test.pypi.org/legacy/"
 [tool.ruff]
 target-version = "py313"
 line-length = 88
-
+# Exclude the auto-generated version file from all checks
+exclude = ["src/hyperskill_python_portfolio/_version.py"]
 
 [tool.ruff.lint]
 select = [
