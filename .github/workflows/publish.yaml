@@ -3,7 +3,8 @@ name: Publish Python Package to PyPI
 on:
   release:
     types: [published]
-
+  workflow_dispatch:
+  
 jobs:
   publish-to-pypi:
     name: Build and publish to PyPI
