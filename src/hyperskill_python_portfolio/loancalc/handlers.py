@@ -3,7 +3,7 @@
 import sys
 from argparse import Namespace
 
-from loancalc.core import (
+from hyperskill_python_portfolio.loancalc.core import (
     MONTHS_IN_YEAR,
     calculate_annuity_payment,
     calculate_annuity_periods,

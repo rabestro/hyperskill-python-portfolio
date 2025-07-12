@@ -1,114 +1,79 @@
-# hyperskill-python-portfolio
+# Hyperskill Python Portfolio
 
-My journey through Hyperskill, captured in a portfolio of Python projects. Each solution is refactored for quality,
-tested with pytest, and statically checked with mypy.
+A collection of classic command-line applications and games, developed as a portfolio of
+Python projects from the Hyperskill platform. Each application is a self-contained,
+runnable program built with modern Python 3.12+.
 
-## About
+This package allows you to instantly install and run a variety of small, fun programs
+directly from your terminal.
 
-This repository contains a curated portfolio of small Python projects completed as part of
-my [Hyperskill](https://hyperskill.org) learning journey.
+## Quick Start: Installation & Usage
 
-Each project is:
-
-- ✅ Refactored for readability and structure
-- 🧪 Tested with [pytest](https://docs.pytest.org/)
-- 🧼 Linted and formatted with [ruff](https://docs.astral.sh/ruff/)
-- 🧠 Type-checked with [mypy](https://mypy.readthedocs.io/)
-- 📐 Analyzed for complexity and maintainability using [radon](https://radon.readthedocs.io/)
-- ⚙️ Managed with [uv](https://github.com/astral-sh/uv) and automated
-  via [Makefile](https://www.google.com/search?q=Makefile)
-
-## Goal
-
-> Learn Python **quickly and practically**, while building confidence with the **Python development toolkit** (
-> formatting, linting, typing, testing, CI).
-
-## Installation
-
-To use the applications from this portfolio, you can install the package directly from PyPI:
+Install the package using `pip` (or any modern installer like `uv` or `pipx`):
 
 ```
 pip install hyperskill-python-portfolio
 ```
 
-Once installed, you can run any of the applications directly from your command line.
+Once installed, you can immediately run any of the included applications.
 
-### Examples
+### Try a Game: Hangman
 
 ```
-# Run the loan calculator
-loancalc annuity --principal 500000 --interest 5 --periods 360
-
-# Run the hangman game
 hangman
-
-# Run the rock-paper-scissors game
-rps
 ```
 
-## Project Structure
+### Try a Utility: Loan Calculator
 
-Each application is a self-contained project within this portfolio.
-
-| Folder         | Description                                   |
-|----------------|-----------------------------------------------|
-| `loancalc`     | A powerful command-line loan calculator       |
-| `billsplitter` | A simple program to split bills among friends |
-| `chatbot`      | A basic chatbot with scripted dialogue        |
-| `hangman`      | The classic Hangman game                      |
-| `rps`          | Rock-Paper-Scissors with score tracking       |
-
-## Development Setup
-
-If you wish to contribute to the project, follow these steps to set up a local development environment.
-
-### Prerequisites
-
-- Python `>=3.11`
-
-- [uv](https://github.com/astral-sh/uv "null") installed (`pip install uv`)
-
-### Setup
+The loan calculator can compute annuity payments, principals, and more.
 
 ```
-# 1. Clone the repository
-git clone [https://github.com/rabestro/hyperskill-python-portfolio.git](https://github.com/rabestro/hyperskill-python-portfolio.git)
-cd hyperskill-python-portfolio
+# Calculate the monthly payment for a loan
+loancalc annuity --principal 500000 --interest 5.5 --periods 360
 
-# 2. Install dependencies for development
-make install
+# Calculate the total principal for a given payment
+loancalc annuity --payment 2800 --interest 5.5 --periods 360
 ```
 
-### Run checks
+## Available Applications
 
-```
-make check      # All checks: lint, format, mypy, test, radon
-make test       # Run pytest
-```
+This portfolio includes the following command-line applications:
 
-## Tools Used
+|                |                                                   |
+|----------------|---------------------------------------------------|
+| **Command**    | **Description**                                   |
+| `loancalc`     | A powerful command-line loan calculator.          |
+| `hangman`      | The classic word-guessing game.                   |
+| `rps`          | Rock-Paper-Scissors with score tracking.          |
+| `billsplitter` | A simple utility to split a bill among friends.   |
+| `chatbot`      | A basic, friendly chatbot with scripted dialogue. |
+| `zookeeper`    | A fun script that displays ASCII art of animals.  |
 
-- **uv** — Ultra-fast Python packaging and resolution
-- **Ruff** — Linter and formatter
-- **Mypy** — Static typing
-- **Pytest** — Testing framework
-- **Radon** — Complexity and maintainability metrics
-- **Make** — Automation and command runner
+Each application is a standalone project, refactored for quality and built with modern
+tooling.
 
-## Quality Metrics
+## About This Project
 
-Metrics such as cyclomatic complexity and maintainability index are generated with:
+This project serves two purposes:
 
-```
-make cc     # complexity
-make mi     # maintainability index
-```
+1. **For Users:** To provide a simple, installable package of classic command-line tools
+   and games.
 
-## Why I Started This
+2. **For Developers:** To serve as a practical portfolio demonstrating modern Python
+   development practices.
 
-This portfolio was born from a desire to learn Python quickly and practically by applying software engineering best
-practices from day one: testing, formatting, CI, and type safety. This portfolio is the result of hands-on exploration
-through real educational tasks.
+The source code is heavily documented, tested with `pytest`, type-checked with `mypy`,
+and formatted with `ruff`. It is intended to be a clear and readable example of a
+well-structured Python application suite.
+
+## For Contributors
+
+This project is managed with a modern Python toolchain. If you are interested in the
+development process or wish to contribute, please visit the
+project's [GitHub repository](https://github.com/rabestro/hyperskill-python-portfolio "null").
+
+The repository contains detailed information on the development setup, tooling (`uv`,
+`ruff`, `mypy`), and how to run the quality checks.
 
 ## License
 
