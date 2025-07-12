@@ -2,10 +2,7 @@ name: Publish Python Package to PyPI
 
 on:
   release:
-    types: [published] # Run only when a new release is published
-
-permissions:
-  id-token: write # Required for trusted publishing with OIDC
+    types: [published]
 
 jobs:
   publish-to-pypi:
@@ -19,7 +16,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # Fetch all history to allow setuptools-scm to determine the version
           fetch-depth: 0
 
       - name: Set up uv and Python
