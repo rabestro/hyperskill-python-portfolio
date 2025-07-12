@@ -1,3 +1,5 @@
+"""Main entry point for the Hangman game application."""
+
 from .game import Game
 
 
