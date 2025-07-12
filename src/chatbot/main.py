@@ -1,15 +1,14 @@
-from . import bot
+"""Main entry point for the chatbot application."""
+
+from .bot import ChatBot
 
 
 def main() -> None:
-    """Initializes and runs the game."""
-
-    bot.show_bot_info(bot.BOT_NAME, bot.BIRTH_YEAR)
-    bot.ask_for_name()
-    bot.guess_age()
-    bot.count_to_number()
-    bot.quiz_programming_concepts()
-    bot.show_congratulations_message()
+    """Initializes and runs the chatbot."""
+    # Create an instance of the bot with its configuration
+    simple_bot = ChatBot(bot_name="Aid", birth_year=2020)
+    # Start the conversation
+    simple_bot.run()
 
 
 if __name__ == "__main__":
