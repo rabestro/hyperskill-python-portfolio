@@ -1,3 +1,5 @@
+"""Contains ASCII art for various zoo animals."""
+
 CAMEL = r"""
 Switching on the camera in the camel habitat...
  ___.-''''-.

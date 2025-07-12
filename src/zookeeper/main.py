@@ -1,3 +1,5 @@
+"""A simple command-line zoo habitat viewer."""
+
 from .art import ALL_ART
 
 GREETING = (
@@ -10,13 +12,11 @@ EXIT_COMMAND = "exit"
 
 
 def main() -> None:
+    """Runs the main interactive loop for the habitat viewer."""
     habitats = {str(i): animal for i, animal in enumerate(ALL_ART)}
 
     while (channel := input(GREETING)) != EXIT_COMMAND:
-        if animal_art := habitats.get(channel):
-            print(animal_art)
-        else:
-            print(ERROR_MESSAGE)
+        print(habitats.get(channel, ERROR_MESSAGE))
 
     print(FAREWELL)
 
