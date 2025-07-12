@@ -1,7 +1,7 @@
-from rps.game_logic import GameRules
+from hyperskill_python_portfolio.rps.game_logic import GameRules
 
 
-def test_classic_rock_paper_scissors():
+def test_classic_rock_paper_scissors() -> None:
     options = GameRules()
     # User wins
     assert options.compare("rock", "scissors") == 1
