@@ -1,3 +1,5 @@
+"""Defines handler functions that connect CLI arguments to core logic."""
+
 import sys
 from argparse import Namespace
 
@@ -16,11 +18,10 @@ def monthly_interest(annual_interest: float) -> float:
 
 
 def handle_annuity(args: Namespace) -> str:
-    """
-    Handles the 'annuity' command.
+    """Handles the 'annuity' command.
 
     Validates arguments, dispatches to the correct annuity calculation function,
-    and prints the result.
+    and formats the result for printing.
     """
     known = [args.principal, args.payment, args.periods]
     if known.count(None) != 1:
@@ -46,14 +47,12 @@ def handle_annuity(args: Namespace) -> str:
 
 
 def handle_diff(args: Namespace) -> str:
-    """
-
-    Handles the 'diff' (differentiated) command.
+    """Handles the 'diff' (differentiated) command.
 
     Validates arguments, calls the differentiated calculation function,
-    and prints the monthly payments and total overpayment.
+    and formats the result for printing.
     """
-    if args.payment is not None:
+    if hasattr(args, "payment") and args.payment is not None:
         print(
             "Error: --payment is not allowed with 'diff' calculation mode.",
             file=sys.stderr,
@@ -68,5 +67,5 @@ def handle_diff(args: Namespace) -> str:
             f"Month {month}: payment is {payment}"
             for month, payment in enumerate(result.payments, start=1)
         )
-        + f"\nOverpayment = {result.overpayment}"
+        + f"\n\nOverpayment = {result.overpayment}"
     )

@@ -78,7 +78,7 @@ def test_handle_diff_calculates_payments() -> None:
     expected_string = (
         "Month 1: payment is 43750\n"
         "Month 2: payment is 43403\n"
-        "Month 3: payment is 43056\n"
+        "Month 3: payment is 43056\n\n"
         "Overpayment = 27083"
     )
     assert result_string == expected_string
