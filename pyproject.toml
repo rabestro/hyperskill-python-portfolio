@@ -1,6 +1,6 @@
 [project]
 name = "hyperskill-python-portfolio"
-version = "0.2.0"
+version = "0.3.0"
 description = "My journey through Hyperskill, captured in a portfolio of Python projects. Each solution is refactored for quality, tested with pytest, and statically checked with mypy."
 authors = [
     { name = "Jegors Čemisovs", email = "jegors.cemisovs@gmail.com" },
@@ -43,7 +43,7 @@ hangman = "hangman.main:main"
 rps = "rps.main:main"
 billsplitter = "billsplitter.main:main"
 chatbot = "chatbot.main:main"
-
+zookeeper = "zookeeper.main:main"
 
 # ==============================================================================
 # Tooling Configuration
