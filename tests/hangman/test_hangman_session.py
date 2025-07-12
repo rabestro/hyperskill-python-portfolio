@@ -1,6 +1,6 @@
 import pytest
 
-from hangman.models import HangmanSession, Status
+from hyperskill_python_portfolio.hangman.models import HangmanSession, Status
 
 
 class TestHangmanSession:
