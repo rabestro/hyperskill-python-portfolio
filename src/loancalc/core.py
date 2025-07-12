@@ -1,3 +1,5 @@
+"""Core functionality for the loan calculator."""
+
 from math import ceil, log, pow
 
 from .models import LoanResult
@@ -45,7 +47,6 @@ def calculate_annuity_periods(
 
 def calculate_diff(interest: float, periods: int, principal: int) -> LoanResult:
     """Calculates all monthly payments for a differentiated loan."""
-
     payments_generator = (
         ceil(
             (principal / periods)
