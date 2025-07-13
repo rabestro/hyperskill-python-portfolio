@@ -1,63 +1,31 @@
-# Welcome to the Python Portfolio
+# A Practical Journey into Modern Python
 
-This project is a collection of classic command-line applications and games, developed
-as a portfolio of Python projects from the Hyperskill platform.
+Welcome! This project is more than just a collection of code. It's a living journal of a journey: the story of an experienced software engineer from the statically-typed world of Java and Scala diving headfirst into the dynamic, rapidly-evolving ecosystem of modern Python.
 
-The source code is heavily documented, tested with `pytest`, type-checked with `mypy`,
-and formatted with `ruff`. It is intended to be a clear and readable example of a
-well-structured Python application suite.
+!!! quote "Author's Note"
+    My name is Jegors. As a developer with a background in the JVM ecosystem, I needed to get up to speed with Python for a new challenge. I believe the best way to learn is by building, so I turned to the excellent projects on the Hyperskill platform to guide my learning.
 
-***
+    But learning a language is only half the story. The real challenge was navigating the modern Python development landscape. So much information online is outdated. This project became my way of answering the question: "How would you build a Python project with best practices in 2025?"
 
-## Quick Start: Installation & Usage
 
-Install the package using `pip` or any modern installer like `uv` or `pipx`:
+## The Goal: Beyond Syntax
 
-```sh
-pip install hyperskill-python-portfolio
-````
+This portfolio has two primary goals:
 
-Once installed, you can immediately run any of the included applications from your
-terminal.
+1. **A Personal Learning Ledger:** To document the process of not just learning Python's syntax, but mastering its contemporary toolchain. This includes everything from dependency management with `uv` to code quality with `ruff` and static analysis with `mypy`.
 
-### Example: Hangman
+2. **A Modern Guide for Learners:** To serve as a practical, up-to-date resource for anyone starting their Python journey today. Instead of abstract examples, this site breaks down real, working projects and explains the "why" behind the technical decisions, refactoring processes, and tool choices.
 
-```sh
-hangman
-```
 
-### Example: Loan Calculator
+## What You Will Find Here
 
-```sh
-# Calculate the monthly payment for a loan
-loancalc annuity --principal 500000 --interest 5.5 --periods 360
-```
+This site is structured to help you explore different facets of the development process:
 
------
+- [**Projects**](./projects/)**:** Dive into detailed case studies of each application. Each page explores the project's goals, the refactoring journey from a simple script to a robust application, and the key Python concepts illustrated.
 
-## Available Applications
+- [**Development Setup**](./development-setup/)**:** Explore the "how" of the project. This section explains the modern tooling used, why each tool was chosen, and how they fit together to create a professional development environment.
 
-This portfolio includes the following command-line applications:
+- [**Blog**](./blog/)**:** Read articles and thoughts on broader software development topics, lessons learned, and comparisons between the Python and JVM ecosystems.
 
-| Command        | Description                                       |
-|----------------|---------------------------------------------------|
-| `loancalc`     | A powerful command-line loan calculator.          |
-| `hangman`      | The classic word-guessing game.                   |
-| `rps`          | Rock-Paper-Scissors with score tracking.          |
-| `billsplitter` | A simple utility to split a bill among friends.   |
-| `chatbot`      | A basic, friendly chatbot with scripted dialogue. |
-| `zookeeper`    | A fun script that displays ASCII art of animals.  |
 
------
-
-## About This Project
-
-This project serves two purposes:
-
-1. **For Users:** To provide a simple, installable package of classic command-line tools
-   and games.
-2. **For Developers:** To serve as a practical portfolio demonstrating modern Python
-   development practices.
-
-For more details on the development process, please visit the
-project's [GitHub repository](https://github.com/rabestro/hyperskill-python-portfolio).
+Thank you for visiting. I hope you find this journey as insightful as I have.

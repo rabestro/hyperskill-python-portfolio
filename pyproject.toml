@@ -50,7 +50,7 @@ rps = "hyperskill_python_portfolio.rps.main:main"
 billsplitter = "hyperskill_python_portfolio.billsplitter.main:main"
 chatbot = "hyperskill_python_portfolio.chatbot.main:main"
 zookeeper = "hyperskill_python_portfolio.zookeeper.main:main"
-coffee-machine = "hyperskill_python_portfolio.coffee_machine.main:main"
+coffeemachine = "hyperskill_python_portfolio.coffee_machine.main:main"
 
 # ==============================================================================
 # Tooling Configuration
@@ -67,7 +67,7 @@ publish-url = "https://test.pypi.org/legacy/"
 
 
 [tool.ruff]
-target-version = "py313"
+target-version = "py312"
 line-length = 88
 # Exclude the auto-generated version file from all checks
 exclude = ["src/hyperskill_python_portfolio/_version.py"]

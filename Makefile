@@ -102,6 +102,9 @@ clean:
 	# Remove OS-specific metadata (like macOS .DS_Store)
 	@find . -name '.DS_Store' -type f -delete
 
+distclean: clean
+	@echo "🧹 Removing all git-ignored files and directories..."
+    @git clean -fdX
 
 # === Project Execution ===
 # Use a pattern rule to handle all 'run-*' targets dynamically.
@@ -116,5 +119,5 @@ quality: lint mypy cc mi
 
 check: quality test build
 
-.PHONY: help install lint format mypy test cc mi quality check build publish clean
-.PHONY: run-loancalc run-hangman run-rps run-billsplitter run-chatbot
+.PHONY: help install lint format mypy test cc mi quality check build publish clean distclean
+.PHONY: run-loancalc run-hangman run-rps run-billsplitter run-chatbot run-coffeemachine run-zookeeper
