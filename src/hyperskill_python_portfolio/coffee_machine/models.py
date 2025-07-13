@@ -13,6 +13,7 @@ class State(Enum):
     FILLING_MILK = auto()
     FILLING_BEANS = auto()
     FILLING_CUPS = auto()
+    SHUTDOWN = auto()
 
 
 @dataclass(frozen=True)
