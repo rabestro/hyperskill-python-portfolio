@@ -48,7 +48,6 @@ class HonestCalculator:
 
     def _is_one_digit(self, number: float) -> bool:
         """Checks if a number is a single-digit integer (-9 to 9)."""
-        # Fixed: The original check missed negative numbers and zero.
         return number.is_integer() and -10 < number < 10
 
     def _store_result(self, result: float) -> None:
@@ -56,7 +55,6 @@ class HonestCalculator:
         if not self._get_user_confirmation(Msg.STORE_RESULT):
             return
 
-        # Refactored: Use a flag to make the storage condition more explicit.
         should_store = True
         if self._is_one_digit(result):
             # For one-digit numbers, we require a chain of confirmations.
