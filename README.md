@@ -23,6 +23,12 @@ Once installed, you can immediately run any of the included applications.
 hangman
 ```
 
+### Try a Simulator: Coffee Machine
+
+```
+coffeemachine
+```
+
 ### Try a Utility: Loan Calculator
 
 The loan calculator can compute annuity payments, principals, and more.
@@ -39,15 +45,15 @@ loancalc annuity --payment 2800 --interest 5.5 --periods 360
 
 This portfolio includes the following command-line applications:
 
-|                |                                                   |
-|----------------|---------------------------------------------------|
-| **Command**    | **Description**                                   |
-| `loancalc`     | A powerful command-line loan calculator.          |
-| `hangman`      | The classic word-guessing game.                   |
-| `rps`          | Rock-Paper-Scissors with score tracking.          |
-| `billsplitter` | A simple utility to split a bill among friends.   |
-| `chatbot`      | A basic, friendly chatbot with scripted dialogue. |
-| `zookeeper`    | A fun script that displays ASCII art of animals.  |
+| **Command**     | **Description**                                    |
+|-----------------|----------------------------------------------------|
+| `billsplitter`  | A simple utility to split a bill among friends.    |
+| `chatbot`       | A basic, friendly chatbot with scripted dialogue.  |
+| `coffeemachine` | An interactive, stateful coffee machine simulator. |
+| `hangman`       | The classic word-guessing game.                    |
+| `loancalc`      | A powerful command-line loan calculator.           |
+| `rps`           | Rock-Paper-Scissors with score tracking.           |
+| `zookeeper`     | A fun script that displays ASCII art of animals.   |
 
 Each application is a standalone project, refactored for quality and built with modern
 tooling.
