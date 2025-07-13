@@ -30,7 +30,7 @@ This project is a perfect exercise in refactoring a simple script with "magic nu
 To run the calculator, use the following command in your terminal after installation:
 
 ```shell
-honestcalculator
+honestcalc
 ```
 
 The application will prompt you to enter equations like `2 + 2` or `5` * `M` (to use the value from memory).

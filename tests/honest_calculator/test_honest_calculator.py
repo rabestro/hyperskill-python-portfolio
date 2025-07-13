@@ -1,5 +1,5 @@
 import pytest
-from pytest import CaptureFixture, MonkeyPatch
+from pytest import CaptureFixture, MonkeyPatch, approx
 
 from hyperskill_python_portfolio.honest_calculator.main import HonestCalculator, Msg
 
@@ -55,9 +55,9 @@ def test_store_in_memory(
     inputs = iter(["10 + 5", "y", "n"])
     monkeypatch.setattr("builtins.input", lambda *args: next(inputs))
 
-    assert calculator.memory == 0.0
+    assert calculator.memory == approx(0.0)
     calculator.run()
-    assert calculator.memory == 15.0
+    assert calculator.memory == approx(15.0)
 
 
 def test_use_memory_in_calculation(
