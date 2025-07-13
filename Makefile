@@ -102,8 +102,7 @@ clean:
 	# Remove OS-specific metadata (like macOS .DS_Store)
 	@find . -name '.DS_Store' -type f -delete
 
-distclean:
-	clean
+distclean: clean
 	@echo "🧹 Removing all git-ignored files and directories..."
     @git clean -fdX
 
