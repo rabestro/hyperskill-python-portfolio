@@ -1,3 +1,15 @@
+---
+title: Coffee Machine
+subtitle: From a simple script to a robust state machine
+icon: material/coffee-outline
+tags:
+  - Object-Oriented Programming
+  - State Machine
+  - Enums
+  - Dataclasses
+  - Refactoring
+---
+
 # Project: Coffee Machine
 
 ## Overview

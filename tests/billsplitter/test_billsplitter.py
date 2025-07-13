@@ -1,5 +1,7 @@
 from unittest.mock import Mock, patch
 
+from pytest import approx
+
 from hyperskill_python_portfolio.billsplitter.main import get_non_negative_number
 
 
@@ -16,7 +18,7 @@ def test_get_non_negative_number_with_valid_integer(mock_input: Mock) -> None:
 def test_get_non_negative_number_with_valid_float(mock_input: Mock) -> None:
     result = get_non_negative_number("Enter value:", float)
 
-    assert result == 7.5
+    assert result == approx(7.5)
     assert isinstance(result, float)
 
 
