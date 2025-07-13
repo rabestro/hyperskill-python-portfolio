@@ -9,10 +9,9 @@ authors = [
 license = "MIT"
 license-files = ["LICENSE"]
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Development Status :: 4 - Beta",
@@ -40,7 +39,7 @@ docs = [
     "mkdocs-material",
     "mkdocs-gen-files",
     "mkdocs-literate-nav",
-#    "mkdocstrings-python"
+    #    "mkdocstrings-python"
 ]
 
 # The script entry points must now include the top-level package namespace.
@@ -51,6 +50,7 @@ rps = "hyperskill_python_portfolio.rps.main:main"
 billsplitter = "hyperskill_python_portfolio.billsplitter.main:main"
 chatbot = "hyperskill_python_portfolio.chatbot.main:main"
 zookeeper = "hyperskill_python_portfolio.zookeeper.main:main"
+coffee-machine = "hyperskill_python_portfolio.coffee_machine.main:main"
 
 # ==============================================================================
 # Tooling Configuration
@@ -74,13 +74,13 @@ exclude = ["src/hyperskill_python_portfolio/_version.py"]
 
 [tool.ruff.lint]
 select = [
-    "E",   # pycodestyle: Enforces style rules (e.g., indentation, line length).
-    "F",   # Pyflakes: Detects logical errors (e.g., unused imports, undefined names).
-    "I",   # isort: Ensures imports are neatly sorted and organized.
-    "UP",  # pyupgrade: Automatically rewrites code to use modern Python syntax.
-    "B",   # flake8-bugbear: Finds likely bugs and design problems.
-    "C4",  # flake8-comprehensions: Pushes for more idiomatic list/dict/set comprehensions.
-    "D",   # pydocstyle: Enforces standards for docstring formatting.
+    "E", # pycodestyle: Enforces style rules (e.g., indentation, line length).
+    "F", # Pyflakes: Detects logical errors (e.g., unused imports, undefined names).
+    "I", # isort: Ensures imports are neatly sorted and organized.
+    "UP", # pyupgrade: Automatically rewrites code to use modern Python syntax.
+    "B", # flake8-bugbear: Finds likely bugs and design problems.
+    "C4", # flake8-comprehensions: Pushes for more idiomatic list/dict/set comprehensions.
+    "D", # pydocstyle: Enforces standards for docstring formatting.
     "TID", # flake8-tidy-imports: Restricts relative imports to enforce a clean architecture.
     "RUF", # Ruff-specific rules: Catches ambiguities and improves code clarity.
 ]
