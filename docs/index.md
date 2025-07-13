@@ -3,11 +3,10 @@
 Welcome! This project is more than just a collection of code. It's a living journal of a journey: the story of an experienced software engineer from the statically-typed world of Java and Scala diving headfirst into the dynamic, rapidly-evolving ecosystem of modern Python.
 
 !!! quote "Author's Note"
-```
-My name is Jegors. As a developer with a background in the JVM ecosystem, I needed to get up to speed with Python for a new challenge. I believe the best way to learn is by building, so I turned to the excellent projects on the Hyperskill platform to guide my learning.
+    My name is Jegors. As a developer with a background in the JVM ecosystem, I needed to get up to speed with Python for a new challenge. I believe the best way to learn is by building, so I turned to the excellent projects on the Hyperskill platform to guide my learning.
 
-But learning a language is only half the story. The real challenge was navigating the modern Python development landscape. So much information online is outdated. This project became my way of answering the question: "How would you build a Python project with best practices in 2025?"
-```
+    But learning a language is only half the story. The real challenge was navigating the modern Python development landscape. So much information online is outdated. This project became my way of answering the question: "How would you build a Python project with best practices in 2025?"
+
 
 ## The Goal: Beyond Syntax
 
