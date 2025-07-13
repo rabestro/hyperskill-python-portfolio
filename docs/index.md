@@ -1,3 +1,11 @@
+---
+title: Home
+hide:
+  - navigation  # Hides the entire left-hand navigation sidebar
+  - toc         # Hides the "Table of Contents" on the right
+  - footer      # Hides the previous/next footer
+---
+
 # A Practical Journey into Modern Python
 
 Welcome! This project is more than just a collection of code. It's a living journal of a journey: the story of an experienced software engineer from the statically-typed world of Java and Scala diving headfirst into the dynamic, rapidly-evolving ecosystem of modern Python.
@@ -21,7 +29,7 @@ This portfolio has two primary goals:
 
 This site is structured to help you explore different facets of the development process:
 
-- [**Projects**](./projects/)**:** Dive into detailed case studies of each application. Each page explores the project's goals, the refactoring journey from a simple script to a robust application, and the key Python concepts illustrated.
+- [**Projects**](./projects/coffee_machine)**:** Dive into detailed case studies of each application. Each page explores the project's goals, the refactoring journey from a simple script to a robust application, and the key Python concepts illustrated.
 
 - [**Development Setup**](./development-setup/)**:** Explore the "how" of the project. This section explains the modern tooling used, why each tool was chosen, and how they fit together to create a professional development environment.
 
