@@ -52,18 +52,12 @@ theme:
 plugins:
   - search
   - literate-nav
+  - tags:
+      tags: false
   # - gen-files:
   #     scripts:
   #       - docs/gen_pages.py # Uncomment when you have a generation script
 
-# Navigation (can be managed by literate-nav via .pages files)
-nav:
-  - Home: index.md
-  - Blog:
-    - blog/index.md
-  - Projects:
-    - Coffee Machine: projects/coffee_machine.md
-    - Loan Calculator: projects/loancalc.md
 
 # Markdown Extensions
 markdown_extensions:
