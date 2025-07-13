@@ -4,8 +4,8 @@ import unittest
 from io import StringIO
 from unittest.mock import patch
 
-from src.hyperskill_python_portfolio.coffee_machine.machine import CoffeeMachine
-from src.hyperskill_python_portfolio.coffee_machine.models import State
+from hyperskill_python_portfolio.coffee_machine.machine import CoffeeMachine
+from hyperskill_python_portfolio.coffee_machine.models import State
 
 
 class TestCoffeeMachine(unittest.TestCase):
