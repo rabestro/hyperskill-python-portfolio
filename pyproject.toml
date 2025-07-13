@@ -26,6 +26,7 @@ dependencies = []
 Homepage = "https://github.com/rabestro/hyperskill-python-portfolio"
 Repository = "https://github.com/rabestro/hyperskill-python-portfolio.git"
 Issues = "https://github.com/rabestro/hyperskill-python-portfolio/issues"
+Documentation = "https://rabestro.github.io/hyperskill-python-portfolio/"
 
 [project.optional-dependencies]
 dev = [
@@ -42,7 +43,6 @@ docs = [
     #    "mkdocstrings-python"
 ]
 
-# The script entry points must now include the top-level package namespace.
 [project.scripts]
 loancalc = "hyperskill_python_portfolio.loancalc.main:main"
 hangman = "hyperskill_python_portfolio.hangman.main:main"
@@ -51,6 +51,8 @@ billsplitter = "hyperskill_python_portfolio.billsplitter.main:main"
 chatbot = "hyperskill_python_portfolio.chatbot.main:main"
 zookeeper = "hyperskill_python_portfolio.zookeeper.main:main"
 coffeemachine = "hyperskill_python_portfolio.coffee_machine.main:main"
+honestcalc = "hyperskill_python_portfolio.honest_calculator.main:main"
+
 
 # ==============================================================================
 # Tooling Configuration
@@ -135,5 +137,4 @@ requires = ["setuptools>=80.0", "setuptools-scm>=8.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
-# This path is correct for your new structure.
 write_to = "src/hyperskill_python_portfolio/_version.py"
