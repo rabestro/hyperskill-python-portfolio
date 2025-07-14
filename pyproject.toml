@@ -1,6 +1,5 @@
 [project]
 name = "hyperskill-python-portfolio"
-# The version is now dynamic and will be determined by setuptools-scm from Git tags.
 dynamic = ["version"]
 description = "My journey through Hyperskill, captured in a portfolio of Python projects. Each solution is refactored for quality, tested with pytest, and statically checked with mypy."
 authors = [
@@ -18,9 +17,9 @@ classifiers = [
     "Intended Audience :: Developers",
     "Topic :: Education",
 ]
-# Runtime dependencies should be empty unless your scripts require a library to run.
-# setuptools-scm is a build dependency, not a runtime one.
-dependencies = []
+dependencies = [
+    "requests"
+]
 
 [project.urls]
 Homepage = "https://github.com/rabestro/hyperskill-python-portfolio"
@@ -34,6 +33,7 @@ dev = [
     "mypy",
     "radon",
     "pytest>=8.4.1",
+    "types-requests",
 ]
 docs = [
     "mkdocs",
@@ -52,7 +52,7 @@ chatbot = "hyperskill_python_portfolio.chatbot.main:main"
 zookeeper = "hyperskill_python_portfolio.zookeeper.main:main"
 coffeemachine = "hyperskill_python_portfolio.coffee_machine.main:main"
 honestcalc = "hyperskill_python_portfolio.honest_calculator.main:main"
-
+cconverter = "hyperskill_python_portfolio.currency_converter.main:main"
 
 # ==============================================================================
 # Tooling Configuration
@@ -71,7 +71,6 @@ publish-url = "https://test.pypi.org/legacy/"
 [tool.ruff]
 target-version = "py312"
 line-length = 88
-# Exclude the auto-generated version file from all checks
 exclude = ["src/hyperskill_python_portfolio/_version.py"]
 
 [tool.ruff.lint]

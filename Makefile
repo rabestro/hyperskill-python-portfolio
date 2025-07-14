@@ -52,7 +52,7 @@ format:
 # === Static typing ===
 
 mypy:
-	uv run mypy src/
+	uv run mypy src/ --install-types
 
 # === Testing ===
 
