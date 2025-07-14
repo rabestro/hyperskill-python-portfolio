@@ -1,10 +1,8 @@
 """Currency Converter."""
 
-import json
-
 import requests
 
-BASE_URL = "http://www.floatrates.com/daily/{code}.json"
+BASE_URL = "https://www.floatrates.com/daily/{code}.json"
 
 
 def main() -> None:
@@ -12,7 +10,7 @@ def main() -> None:
     source_code = input().lower()
     url = BASE_URL.format(code=source_code)
     response = requests.get(url, timeout=10)
-    data = json.loads(response.text)
+    data = response.json()
 
     rates = {}
     if source_code != "usd":
