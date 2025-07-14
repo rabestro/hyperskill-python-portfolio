@@ -105,6 +105,9 @@ wheels = [
 [[package]]
 name = "hyperskill-python-portfolio"
 source = { editable = "." }
+dependencies = [
+    { name = "requests" },
+]
 
 [package.optional-dependencies]
 dev = [
@@ -130,6 +133,7 @@ requires-dist = [
     { name = "mypy", marker = "extra == 'dev'" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.4.1" },
     { name = "radon", marker = "extra == 'dev'" },
+    { name = "requests" },
     { name = "ruff", marker = "extra == 'dev'" },
     { name = "types-requests", marker = "extra == 'dev'" },
 ]

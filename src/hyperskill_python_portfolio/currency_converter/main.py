@@ -11,7 +11,7 @@ def main() -> None:
     """Processes currency conversion requests with caching to improve efficiency."""
     source_code = input().lower()
     url = BASE_URL.format(code=source_code)
-    response = requests.get(url)
+    response = requests.get(url, timeout=10)
     data = json.loads(response.text)
 
     rates = {}
