@@ -1,124 +1,128 @@
 # Makefile for Python quality automation
+#
+# This Makefile uses 'uv' for fast, modern Python project management.
+# It features a self-documenting help target. Add '##' comments to targets
+# to have them appear in 'make help'.
 
+# --- Configuration ---
+# Default goal when 'make' is run without arguments.
 .DEFAULT_GOAL := help
 
-# Variable for passing command-line arguments to run targets
+# Overridable variables. Use 'make lint SOURCE=./my_app' to override.
+SOURCE ?= src
+TEST_DIR ?= tests
+FULL_SOURCES = $(SOURCE) $(TEST_DIR)
+
+# Variable for passing extra command-line arguments to run targets.
+# e.g., make test ARGS="-k my_specific_test"
 ARGS ?=
 
+
 # === Help ===
-
-help:
-	@echo "Available commands:"
+# The 'help' target uses awk to parse comments and generate a help message.
+# It's a common pattern for creating self-documenting Makefiles.
+help: ## ✨ Displays this help message
+	@echo "Usage: make [target] [ARGS=...]"
 	@echo ""
-	@echo "  \033[1mUsage\033[0m: make [target]"
-	@echo ""
-	@echo "  \033[1mInstallation\033[0m:"
-	@echo "    install          - Install project dependencies for development"
-	@echo ""
-	@echo "  \033[1mQuality & Testing\033[0m:"
-	@echo "    lint             - Run Ruff linter"
-	@echo "    format           - Run Ruff formatter"
-	@echo "    mypy             - Run mypy type checker"
-	@echo "    test             - Run pytest"
-	@echo "    cc               - Report cyclomatic complexity"
-	@echo "    mi               - Report maintainability index"
-	@echo "    quality          - Run all static analysis checks (lint, mypy, radon)"
-	@echo "    check            - Run all checks including tests and build"
-	@echo ""
-	@echo "  \033[1mBuild & Distribution\033[0m:"
-	@echo "    build            - Build the wheel and sdist packages"
-	@echo "    publish          - Publish the package to PyPI"
-	@echo "    clean            - Remove build artifacts and temporary files"
-	@echo ""
-	@echo "  \033[1mProject Execution\033[0m:"
-	@echo "    run-<app>        - Run a specific application (e.g., make run-loancalc)"
-	@echo ""
-	@echo "  \033[1mNote\033[0m: For execution targets, pass arguments via ARGS, e.g.:"
-	@echo "    make run-loancalc ARGS=\"annuity --principal 100k\""
+	@echo "Available targets:"
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z0-9_-]+:.*?## / {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-# === Installation ===
 
-install:
-	uv pip install -e .[dev]
+# === Project Setup & Dependencies ===
+install: ## 📦 Install project dependencies for development
+	@echo "⌛ Installing development dependencies..."
+	uv pip install --editable .[dev]
+	@echo "✅ Dependencies installed."
 
-# === Linting and formatting ===
 
-lint:
-	uv run ruff check . $(ARGS)
+# === Quality & Formatting ===
+format: ## 🎨 Formats code using Ruff
+	@echo "⌛ Formatting project code..."
+	uv run ruff format $(FULL_SOURCES)
+	uv run ruff check $(FULL_SOURCES) --fix --show-fixes
+	@echo "✅ Code formatted."
 
-format:
-	uv run ruff format .
+lint: ## 🔍 Lints code using Ruff
+	@echo "⌛ Linting project code..."
+	uv run ruff check $(FULL_SOURCES) $(ARGS)
+	@echo "✅ Linting complete."
 
-# === Static typing ===
+mypy: ## 🧐 Checks static types with mypy
+	@echo "⌛ Running mypy type checker..."
+	uv run mypy $(SOURCE)/ --install-types
+	@echo "✅ Type checking complete."
 
-mypy:
-	uv run mypy src/ --install-types
 
-# === Testing ===
-
-test:
+# === Testing & Code Metrics ===
+test: ## 🧪 Runs tests with pytest
+	@echo "⌛ Running tests..."
 	uv run pytest $(ARGS)
+	@echo "✅ Tests finished."
 
-# === Code metrics ===
+cc: ## 🔬 Reports cyclomatic complexity with radon
+	uv run radon cc $(SOURCE)/ --show-complexity --average --total-average
 
-cc:
-	uv run radon cc src/ --show-complexity --average --total-average
+mi: ## 🔧 Reports maintainability index with radon
+	uv run radon mi --show --sort $(SOURCE)/
 
-mi:
-	uv run radon mi --show --sort src/
 
-# === Build and Publishing ===
-
-build:
-	@echo "📦 Building wheel and sdist with uv into dist/..."
+# === Build & Distribution ===
+build: ## 🏗️ Builds the wheel and sdist packages
+	@echo "📦 Building wheel and sdist into dist/..."
+	@rm -rf dist/ # Clean previous builds first
 	@uv build
+	@echo "✅ Build successful."
 
-publish-test:
+publish-test: ## 🚀 Publishes artifacts to TestPyPI for validation
 	@echo "🚀 Publishing artifacts to TestPyPI..."
+	@if [ -z "$${UV_PUBLISH_TOKEN}" ]; then \
+		echo "\033[31m❌ Error: UV_PUBLISH_TOKEN environment variable is not set.\033[0m"; \
+		echo "   Please set it before running this command."; \
+		exit 1; \
+	fi
 	@uv publish --index testpypi
+	@echo "✅ Published to TestPyPI."
 
-publish:
-	@echo "🚀 Publishing artifacts to PyPI..."
-	@uv publish
 
-# The "super-clean" or "distclean" pattern is sometimes used for a more
-# aggressive cleanup that also removes the virtual environment, but our
-# current `clean` is safer for typical development workflows.
-clean:
-	@echo "🧹 Cleaning up build artifacts, caches, and temporary files..."
-	# Remove Python cache files and compiled bytecode
+# === Cleanup ===
+clean: ## 🧹 Removes build artifacts and cache files
+	@echo "🧹 Cleaning up the project..."
+	# Use a single rm command for efficiency and clarity
+	@rm -rf \
+		build/ \
+		dist/ \
+		*.egg-info/ \
+		.eggs/ \
+		.pytest_cache/ \
+		.coverage \
+		.mypy_cache/ \
+		.ruff_cache/
+	# Use find for cleaning nested cache files and directories
 	@find . -type f -name '*.pyc' -delete
 	@find . -type d -name '__pycache__' -exec rm -rf {} +
-
-	# Remove build artifacts
-	@rm -rf dist/ build/ *.egg-info/ .eggs/
-
-	# Remove test and coverage reports/caches
-	@rm -rf .pytest_cache/ .coverage
-
-	# Remove static analysis and formatter caches
-	@rm -rf .mypy_cache/ .ruff_cache/
-
-	# Remove OS-specific metadata (like macOS .DS_Store)
 	@find . -name '.DS_Store' -type f -delete
+	@echo "✅ Cleanup complete."
 
-#distclean: clean
+# A more aggressive clean, often called 'distclean'. Kept commented as a reference.
+# distclean: clean ## 🧹 Removes all git-ignored files (use with caution!)
 #	@echo "🧹 Removing all git-ignored files and directories..."
-#    @git clean -fdX
+#	@git clean -fdX
+
 
 # === Project Execution ===
-# Use a pattern rule to handle all 'run-*' targets dynamically.
-# Example: make run-loancalc ARGS="..."
-
-run-%:
+# This is a pattern rule that dynamically handles any 'run-*' target.
+# For example, 'make run-loancalc' will execute 'uv run loancalc'.
+run-%: ## ▶️  Runs an application (e.g., make run-loancalc)
 	@uv run $* $(ARGS)
 
-# === Quality Aggregation ===
 
-quality: lint mypy cc mi
+# === Aggregation Targets ===
+quality: lint mypy cc mi ## 🏅 Runs all static analysis checks
+check: quality test build ## ✅ Runs all checks (quality, tests, build)
 
-check: quality test build
 
-.PHONY: help install lint format mypy test cc mi quality check build publish clean distclean
-.PHONY: run-loancalc run-hangman run-rps run-billsplitter run-chatbot run-coffeemachine
-.PHONY: run-honestcalc run-zookeeper
+# --- Phony Targets ---
+# Declares targets that are not files. This prevents conflicts with files of the
+# same name and can improve performance.
+.PHONY: help install format lint mypy test cc mi quality check build publish-test clean distclean
+.PHONY: run-%

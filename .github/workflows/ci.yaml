@@ -22,7 +22,7 @@ jobs:
       - name: Set up uv and Python
         uses: astral-sh/setup-uv@v6
         with:
-          version: "0.7.20"
+          version: "0.7.21"
           python-version: ${{ matrix.python-version }}
           enable-cache: true
 
@@ -54,7 +54,7 @@ jobs:
       - name: Set up uv and Python
         uses: astral-sh/setup-uv@v6
         with:
-          version: "0.7.20"
+          version: "0.7.21"
           python-version: "3.12"
           enable-cache: true
 
