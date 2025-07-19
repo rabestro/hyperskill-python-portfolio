@@ -26,7 +26,7 @@ def handle_game_turn(user_input: str, current_score: int, rules: GameRules) -> i
     Returns:
         The updated score after the turn.
     """
-    computer_choice = random.choice(rules.options)
+    computer_choice = random.choice(rules.options)  # noqa: S311
     result = rules.compare(user_input, computer_choice)
 
     match result:
