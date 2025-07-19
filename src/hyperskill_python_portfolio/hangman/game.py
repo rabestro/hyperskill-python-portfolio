@@ -31,7 +31,7 @@ class Game:
 
     def _play_one_game(self) -> None:
         """Manages the logic for a single round of Hangman."""
-        random_word = random.choice(self.WORD_BANK)
+        random_word = random.choice(self.WORD_BANK)  # noqa: S311
         session = HangmanSession(random_word)
         remaining_attempts = self.MAX_ATTEMPTS
 
