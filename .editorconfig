@@ -11,9 +11,11 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 max_line_length = 88
 
-# Override for common data and config formats to use 2-space indentation.
+# Override for common data and config formats to use 2-space indentation
+# and disable line length checks, as they often contain long strings.
 [*.{json,yml,yaml,xml,toml}]
 indent_size = 2
+max_line_length = unset
 
 [*.md]
 trim_trailing_whitespace = false
