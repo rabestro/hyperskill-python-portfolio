@@ -34,6 +34,7 @@ dev = [
     "radon",
     "pytest>=8.4.1",
     "types-requests",
+    "poethepoet>=0.36.0",
 ]
 docs = [
     "mkdocs",
@@ -75,6 +76,7 @@ exclude = ["src/hyperskill_python_portfolio/_version.py"]
 
 [tool.ruff.lint]
 select = [
+    "S", # flake8-bandit: Catches common security issues.
     "E", # pycodestyle: Enforces style rules (e.g., indentation, line length).
     "F", # Pyflakes: Detects logical errors (e.g., unused imports, undefined names).
     "I", # isort: Ensures imports are neatly sorted and organized.
@@ -99,6 +101,7 @@ convention = "google"
     "D102", # Missing docstring in public method
     "D103", # Missing docstring in public function
     "D104", # Missing docstring in public package
+    "S101", # Use of `assert` is standard practice in tests
 ]
 
 
@@ -126,6 +129,56 @@ addopts = "-ra -q --strict-markers"
 exclude = ["tests", "docs"]
 cc_min = "B"
 mi_min = 70
+
+# ==============================================================================
+# Poe the Poet Task Runner Configuration
+# ==============================================================================
+[tool.poe.tasks]
+# Each key is a task name. The value can be a string, a list of strings (sequence),
+# or a table for more complex definitions.
+
+# --- Quality & Formatting ---
+format = { cmd = "ruff format src tests", help = "🎨 Formats code using Ruff" }
+lint = { cmd = "ruff check src tests", help = "🔍 Lints code using Ruff" }
+fix = { cmd = "ruff check src tests --fix --show-fixes", help = "✨ Lints and automatically fixes issues with Ruff" }
+mypy = { cmd = "mypy src/ --install-types", help = "🧐 Checks static types with mypy" }
+
+# --- Testing & Code Metrics ---
+test = { cmd = "pytest", help = "🧪 Runs tests with pytest" }
+cc = { cmd = "radon cc src/ --show-complexity --average --total-average", help = "🔬 Reports cyclomatic complexity" }
+mi = { cmd = "radon mi --show --sort src/", help = "🔧 Reports maintainability index" }
+
+# --- Build & Distribution ---
+build = { cmd = "uv build", help = "🏗️ Builds the wheel and sdist packages" }
+publish-test = { shell = """
+  if [ -z "$${UV_PUBLISH_TOKEN}" ]; then
+    echo "❌ Error: UV_PUBLISH_TOKEN environment variable is not set."
+    exit 1
+  fi
+  uv publish --index testpypi
+""", help = "🚀 Publishes artifacts to TestPyPI" }
+
+# --- Cleanup ---
+# This task now uses a `script` type to call a helper from poethepoet itself.
+# This makes it fully cross-platform (works on Windows, macOS, and Linux).
+clean = { script = "poethepoet.scripts:rm('build', 'dist', '**/*.egg-info', '.eggs', '.pytest_cache', '.coverage', '.mypy_cache', '.ruff_cache', '**/__pycache__', '**/*.pyc', '.DS_Store')", help = "🧹 Removes build artifacts and cache files (cross-platform)" }
+
+# --- Project Execution ---
+# This task now calls our dedicated runner script, which is more robust.
+run = { cmd = "python -m hyperskill_python_portfolio.scripts.runner", help = "▶️ Runs an application (e.g., poe run loancalc --principal 1000)" }
+
+# --- Aggregation & Advanced Tasks ---
+quality = { sequence = ["lint", "mypy", "cc", "mi"], help = "🏅 Runs all static analysis checks" }
+check = { sequence = ["quality", "test", "build"], help = "✅ Runs all checks (quality, tests, build)" }
+
+# This is a new `switch` task that demonstrates more advanced poe features.
+# It runs a different command based on the value of `sys.platform`.
+"check-platform" = { help = "🐍 Reports the current OS platform", control.expr = "sys.platform", switch = [
+    { case = "win32", expr = "'Running on Windows ⊞'" },
+    { case = "linux", expr = "'Running on Linux 🐧'" },
+    { case = "darwin", expr = "'Running on macOS '" },
+    { expr = "f'Running on an unknown platform: {sys.platform}'" }, # Default case
+] }
 
 # ==============================================================================
 # Build System Configuration
