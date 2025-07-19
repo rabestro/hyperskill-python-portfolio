@@ -47,7 +47,7 @@ def main() -> None:
 
     lucky_friend: str | None = None
     if is_lucky_feature_enabled:
-        lucky_friend = random.choice(names)
+        lucky_friend = random.choice(names)  # noqa: S311
         print(f"{lucky_friend} is the lucky one!")
     else:
         print("No one is going to be lucky")
