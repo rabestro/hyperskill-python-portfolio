@@ -1,9 +1,8 @@
-# Define headers for the Markdown table
 ["File", "MI Score", "Rank"],
 ["-", "-", "-"],
 
-# Process the JSON input from radon
-# 1. Convert the top-level object to key-value entries
-# 2. For each entry, create an array with the file, formatted score, and rank
-# 3. Format the output as Tab-Separated Values (TSV)
-(to_entries[] | [.key, ((.value.mi * 100 | round) / 100), .value.rank]) | @tsv
+# 1. Convert object to an array of entries: [to_entries]
+# 2. Sort that array by the key (the file path): [sort_by(.key)]
+# 3. Iterate over the now-sorted array: []
+# 4. Format each item into our desired array for the table
+(to_entries | sort_by(.key) | .[] | [.key, ((.value.mi * 100 | round) / 100), .value.rank]) | @tsv
