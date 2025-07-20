@@ -64,11 +64,7 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
 
           # Generate a Markdown table from Radon's JSON output using jq
-          uv run radon mi src/ --json \
-            | jq -r '
-                ["File", "MI Score", "Rank"],
-                ["-", "-", "-"],
-                (to_entries[] | [.key, ((.value.mi * 100 | round) / 100), .value.rank])
-                | @tsv' \
+          uv run radon mi src/ --sort --show --json \
+            | jq -r -f ./scripts/format_mi.jq \
             | sed 's/\t/ | /g' \
             | awk '{print "| " $0 " |"}' >> $GITHUB_STEP_SUMMARY
