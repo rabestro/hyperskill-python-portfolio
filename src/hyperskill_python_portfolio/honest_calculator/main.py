@@ -1,5 +1,6 @@
 """This module contains the main entry point for the Honest Calculator application."""
 
+from collections.abc import Callable
 from enum import Enum
 
 
@@ -69,7 +70,7 @@ class HonestCalculator:
 
     def _check_laziness(self, x: float, y: float, oper: str) -> None:
         """Checks for and prints messages related to 'lazy' operations."""
-        laziness_rules = [
+        laziness_rules: list[tuple[Callable[[], bool], Msg]] = [
             (lambda: self._is_one_digit(x) and self._is_one_digit(y), Msg.IS_LAZY),
             (lambda: (x == 1 or y == 1) and oper == "*", Msg.IS_VERY_LAZY),
             (lambda: (x == 0 or y == 0) and oper in "+-*", Msg.IS_VERY_VERY_LAZY),

@@ -1,0 +1,66 @@
+# A GitHub Action workflow to run PyCharm's code inspections.
+
+name: PyCharm Code Inspection
+
+on:
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    name: Run PyCharm Inspector
+    runs-on: ubuntu-latest
+
+    env:
+      # The version of PyCharm Professional to use.
+      PYCHARM_VERSION: '2025.1.3'
+      INSPECTION_PROFILE_PATH: '.idea/inspectionProfiles/Project_Default.xml'
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu' # A popular OpenJDK distribution
+          java-version: '17'
+
+      - name: Cache or Download PyCharm
+        id: cache-pycharm
+        uses: actions/cache@v4
+        with:
+          path: pycharm
+          key: pycharm-${{ env.PYCHARM_VERSION }}
+
+      - name: Download and Extract PyCharm
+        if: steps.cache-pycharm.outputs.cache-hit != 'true'
+        run: |
+          PYCHARM_DOWNLOAD_URL="https://download.jetbrains.com/python/pycharm-professional-${PYCHARM_VERSION}.tar.gz"
+          echo "Downloading PyCharm from ${PYCHARM_DOWNLOAD_URL}..."
+          wget -q -O pycharm.tar.gz "${PYCHARM_DOWNLOAD_URL}"
+          mkdir -p pycharm
+          tar -xzf pycharm.tar.gz -C pycharm --strip-components=1
+          echo "PyCharm extracted successfully."
+
+      # Run the PyCharm inspector.
+      # This is the core step. It executes the `inspect.sh` script with the necessary arguments.
+      # - The first argument is the project directory (`.`).
+      # - The second is the path to your inspection profile.
+      # - The third is the output directory for the report (`./inspection-results`).
+      # - `-f xml` specifies the output format.
+      # - `|| true` ensures the workflow continues even if inspections find errors,
+      #   so we can always upload the report.
+      - name: Run PyCharm Inspections
+        run: |
+          echo "Running inspections with profile: ${{ env.INSPECTION_PROFILE_PATH }}"
+          ./pycharm/bin/inspect.sh . ${{ env.INSPECTION_PROFILE_PATH }} ./inspection-results -f xml -v2 || true
+
+      # Upload the inspection report as a build artifact.
+      # This makes the report available for download from the workflow run's summary page.
+      # It will run even if the previous step failed, allowing you to see the results.
+      - name: Upload inspection report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pycharm-inspection-report
+          path: ./inspection-results
