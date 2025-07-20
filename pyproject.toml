@@ -114,10 +114,7 @@ docstring-code-format = true
 
 [tool.mypy]
 mypy_path = "src"
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = true
-
+strict = true
 
 [tool.pytest.ini_options]
 minversion = "7.0"
