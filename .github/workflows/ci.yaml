@@ -39,7 +39,7 @@ jobs:
       - name: Check formatting with Ruff
         run: uv run ruff format --check .
 
-      - name: Lint with Ruff
+      - name: Lint with Ruff (SAST by flake8-bandit)
         run: uv run ruff check .
 
       - name: Type check with MyPy
@@ -47,6 +47,9 @@ jobs:
 
       - name: Run tests with Pytest
         run: uv run pytest
+
+      - name: Audit dependencies for vulnerabilities (SCA)
+        run: uv tool run pip-audit
 
       - name: Generate Code Metrics Reports
         if: matrix.python-version == '3.12'
@@ -63,9 +66,9 @@ jobs:
           # Generate a Markdown table from Radon's JSON output using jq
           uv run radon mi src/ --json \
             | jq -r '
-              ["File", "MI Score", "Rank"],
-              ["-", "-", "-"],
-              (.[] | to_entries[] | [.key, .value.mi, .value.rank])
-              | @tsv' \
+                ["File", "MI Score", "Rank"],
+                ["-", "-", "-"],
+                (to_entries[] | [.key, ((.value.mi * 100 | round) / 100), .value.rank])
+                | @tsv' \
             | sed 's/\t/ | /g' \
             | awk '{print "| " $0 " |"}' >> $GITHUB_STEP_SUMMARY
