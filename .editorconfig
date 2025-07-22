@@ -1,46 +1,73 @@
 # https://spec.editorconfig.org/
 # This is the top-most EditorConfig file.
+# A best practice to prevent settings from parent directories from interfering.
 root = true
 
 # Apply these rules to all files in the repository as a baseline.
 [*]
+# Sets the character set to UTF-8, the universal standard for text files.
 charset = utf-8
 
-# Unix-style newlines at the bottom of every file
+# Enforces Unix-style line endings (LF), which prevents cross-platform issues
+# with Git.
 end_of_line = lf
 
-# Tab indentation
+# A clear and consistent indentation policy. Using spaces is the most
+# compatible choice. 4 spaces is a common standard for Python.
 indent_style = space
 indent_size = 4
+tab_width = 4
 
-# Make sure every file has a blank line at the end
+# Ensures files are POSIX-compliant and prevents issues with some command-line tools.
 insert_final_newline = true
 
-# Remove any whitespace characters preceding newline characters
+# Keeps the codebase clean and avoids noise in diffs.
 trim_trailing_whitespace = true
 
-# Sets the natural language that should be used for spell checking.
-# Only one language can be specified
-# Ref: https://spec.editorconfig.org/#supported-pairs
+# Good for team consistency. Specifies the language for the IDE's spell checker.
 spelling_language = en-US
 
+# Sets a project-wide line length. 88 is the standard for the Black code
+# formatter and is a great choice for modern displays.
 max_line_length = 88
 
 # Override for common data and config formats to use 2-space indentation
 # and disable line length checks, as they often contain long strings.
+# This is a very thoughtful override.
 [*.{json,yml,yaml,xml,toml}]
 indent_size = 2
 max_line_length = unset
 
+# Specific rules for Markdown files.
 [*.md]
+# Crucial override. Disabling this prevents the editor from breaking
+# intentional hard line breaks (which require two trailing spaces in Markdown).
 trim_trailing_whitespace = false
+# Disabling line length checks is wise for prose.
 max_line_length = unset
 
+# Specific rules for Makefiles.
 [Makefile]
+# This is essential. Makefiles strictly require tab characters for indentation.
+# Including this prevents very common and frustrating errors.
 indent_style = tab
 max_line_length = unset
 
+# A smart exception for the LICENSE file.
 [LICENSE]
-# Don't try forcing a style to the LICENSE file because it's a rendered template
+# The formatting of a LICENSE file is often fixed and should not be altered.
+# Unsetting these rules prevents the editor from modifying it.
 indent_size = unset
 indent_style = unset
+
+# Python-specific settings for JetBrains IDEs (PyCharm).
+# This section perfectly aligns the IDE's "Optimize Imports" feature with
+# the behavior of `ruff` and `isort`, ensuring consistency between the
+# developer's local actions and the project's CI/linting tools.
+[*.py]
+ij_python_optimize_imports_join_from_imports_with_same_source = true
+ij_python_optimize_imports_case_insensitive_order = true
+ij_python_optimize_imports_sort_imports = true
+ij_python_optimize_imports_sort_by_type_first = true
+ij_python_optimize_imports_always_split_from_imports = false
+ij_python_optimize_imports_sort_names_in_from_imports = false
