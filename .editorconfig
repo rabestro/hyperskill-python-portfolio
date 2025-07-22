@@ -1,14 +1,29 @@
+# https://spec.editorconfig.org/
 # This is the top-most EditorConfig file.
 root = true
 
 # Apply these rules to all files in the repository as a baseline.
 [*]
 charset = utf-8
+
+# Unix-style newlines at the bottom of every file
 end_of_line = lf
+
+# Tab indentation
 indent_style = space
 indent_size = 4
+
+# Make sure every file has a blank line at the end
 insert_final_newline = true
+
+# Remove any whitespace characters preceding newline characters
 trim_trailing_whitespace = true
+
+# Sets the natural language that should be used for spell checking.
+# Only one language can be specified
+# Ref: https://spec.editorconfig.org/#supported-pairs
+spelling_language = en-US
+
 max_line_length = 88
 
 # Override for common data and config formats to use 2-space indentation
@@ -19,8 +34,13 @@ max_line_length = unset
 
 [*.md]
 trim_trailing_whitespace = false
-max_line_length = 120
+max_line_length = unset
 
 [Makefile]
 indent_style = tab
-max_line_length = 120
+max_line_length = unset
+
+[LICENSE]
+# Don't try forcing a style to the LICENSE file because it's a rendered template
+indent_size = unset
+indent_style = unset
