@@ -3,22 +3,22 @@ name = "hyperskill-python-portfolio"
 dynamic = ["version"]
 description = "My journey through Hyperskill, captured in a portfolio of Python projects. Each solution is refactored for quality, tested with pytest, and statically checked with mypy."
 authors = [
-    { name = "Jegors Čemisovs", email = "jegors.cemisovs@gmail.com" },
+  { name = "Jegors Čemisovs", email = "jegors.cemisovs@gmail.com" },
 ]
 license = "MIT"
 license-files = ["LICENSE"]
 readme = "README.md"
 requires-python = ">=3.12"
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
-    "Topic :: Education",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Topic :: Education",
 ]
 dependencies = [
-    "requests"
+  "requests"
 ]
 
 [project.urls]
@@ -29,19 +29,19 @@ Documentation = "https://rabestro.github.io/hyperskill-python-portfolio/"
 
 [project.optional-dependencies]
 dev = [
-    "ruff",
-    "mypy",
-    "radon",
-    "pytest>=8.4.1",
-    "types-requests",
-    "poethepoet>=0.36.0",
+  "ruff",
+  "mypy",
+  "radon",
+  "pytest>=8.4.1",
+  "types-requests",
+  "poethepoet>=0.36.0",
 ]
 docs = [
-    "mkdocs",
-    "mkdocs-material",
-    "mkdocs-gen-files",
-    "mkdocs-literate-nav",
-    "mkdocstrings-python"
+  "mkdocs",
+  "mkdocs-material",
+  "mkdocs-gen-files",
+  "mkdocs-literate-nav",
+  "mkdocstrings-python"
 ]
 
 [project.scripts]
@@ -76,16 +76,17 @@ exclude = ["src/hyperskill_python_portfolio/_version.py"]
 
 [tool.ruff.lint]
 select = [
-    "S", # flake8-bandit: Catches common security issues.
-    "E", # pycodestyle: Enforces style rules (e.g., indentation, line length).
-    "F", # Pyflakes: Detects logical errors (e.g., unused imports, undefined names).
-    "I", # isort: Ensures imports are neatly sorted and organized.
-    "UP", # pyupgrade: Automatically rewrites code to use modern Python syntax.
-    "B", # flake8-bugbear: Finds likely bugs and design problems.
-    "C4", # flake8-comprehensions: Pushes for more idiomatic list/dict/set comprehensions.
-    "D", # pydocstyle: Enforces standards for docstring formatting.
-    "TID", # flake8-tidy-imports: Restricts relative imports to enforce a clean architecture.
-    "RUF", # Ruff-specific rules: Catches ambiguities and improves code clarity.
+  "S", # flake8-bandit: Catches common security issues.
+  "E", # pycodestyle: Enforces style rules (e.g., indentation, line length).
+  "F", # Pyflakes: Detects logical errors (e.g., unused imports, undefined names).
+  "I", # isort: Ensures imports are neatly sorted and organized.
+  "UP", # pyupgrade: Automatically rewrites code to use modern Python syntax.
+  "B", # flake8-bugbear: Finds likely bugs and design problems.
+  "C4", # flake8-comprehensions: Pushes for more idiomatic list/dict/set comprehensions.
+  "D", # pydocstyle: Enforces standards for docstring formatting.
+  "TID", # flake8-tidy-imports: Restricts relative imports to enforce a clean architecture.
+  "RUF", # Ruff-specific rules: Catches ambiguities and improves code clarity.
+  "A001", # flake8-builtins: Avoid shadowing Python built-ins
 ]
 ignore = []
 
@@ -93,15 +94,19 @@ ignore = []
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
+[tool.ruff.lint.isort]
+# Sections for grouping imports. Order matters.
+known-first-party = ["hyperskill_python_portfolio", "tests"]
+required-imports = ["from __future__ import annotations"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**/*.py" = [
-    "D100", # Missing docstring in public module
-    "D101", # Missing docstring in public class
-    "D102", # Missing docstring in public method
-    "D103", # Missing docstring in public function
-    "D104", # Missing docstring in public package
-    "S101", # Use of `assert` is standard practice in tests
+  "D100", # Missing docstring in public module
+  "D101", # Missing docstring in public class
+  "D102", # Missing docstring in public method
+  "D103", # Missing docstring in public function
+  "D104", # Missing docstring in public package
+  "S101", # Use of `assert` is standard practice in tests
 ]
 
 
@@ -204,10 +209,10 @@ help = "✅ Runs all checks (quality, tests, build)"
 help = "🐍 Reports the current OS platform"
 control.expr = "sys.platform"
 switch = [
-    { case = "win32", expr = "'Running on Windows ⊞'" },
-    { case = "linux", expr = "'Running on Linux 🐧'" },
-    { case = "darwin", expr = "'Running on macOS '" },
-    { expr = "f'Running on an unknown platform: {sys.platform}'" }, # Default case
+  { case = "win32", expr = "'Running on Windows ⊞'" },
+  { case = "linux", expr = "'Running on Linux 🐧'" },
+  { case = "darwin", expr = "'Running on macOS '" },
+  { expr = "f'Running on an unknown platform: {sys.platform}'" }, # Default case
 ]
 
 # ==============================================================================
