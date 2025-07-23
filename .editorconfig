@@ -71,3 +71,12 @@ ij_python_optimize_imports_sort_imports = true
 ij_python_optimize_imports_sort_by_type_first = true
 ij_python_optimize_imports_always_split_from_imports = false
 ij_python_optimize_imports_sort_names_in_from_imports = false
+
+# PyCharm-specific settings to format this .editorconfig file itself.
+[.editorconfig]
+ij_editorconfig_space_after_colon = false
+ij_editorconfig_space_after_comma = true
+ij_editorconfig_space_before_colon = false
+ij_editorconfig_space_before_comma = false
+ij_editorconfig_spaces_around_assignment_operators = true
+ij_editorconfig_align_group_field_declarations = false
