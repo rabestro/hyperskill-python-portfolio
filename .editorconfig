@@ -31,6 +31,25 @@ spelling_language = en-US
 # formatter and is a great choice for modern displays.
 max_line_length = 88
 
+
+[*.py]
+# Python-specific settings for JetBrains IDEs (PyCharm).
+# This section perfectly aligns the IDE's "Optimize Imports" feature with
+# the behavior of `ruff` and `isort`, ensuring consistency between the
+# developer's local actions and the project's CI/linting tools.
+ij_python_optimize_imports_join_from_imports_with_same_source = true
+ij_python_optimize_imports_case_insensitive_order = true
+ij_python_optimize_imports_sort_imports = true
+ij_python_optimize_imports_sort_by_type_first = true
+ij_python_optimize_imports_always_split_from_imports = false
+ij_python_optimize_imports_sort_names_in_from_imports = false
+ij_python_from_import_wrapping = normal
+ij_python_from_import_new_line_after_left_parenthesis = false
+ij_python_from_import_new_line_before_right_parenthesis = false
+ij_python_from_import_parentheses_force_if_multiline = true
+ij_python_from_import_trailing_comma_if_multiline = true
+
+
 # Override for common data and config formats to use 2-space indentation
 # and disable line length checks, as they often contain long strings.
 # This is a very thoughtful override.
@@ -39,12 +58,30 @@ indent_size = 2
 max_line_length = unset
 
 # Specific rules for Markdown files.
-[*.md]
+[{*.markdown,*.md}]
 # Crucial override. Disabling this prevents the editor from breaking
 # intentional hard line breaks (which require two trailing spaces in Markdown).
 trim_trailing_whitespace = false
 # Disabling line length checks is wise for prose.
 max_line_length = unset
+# JetBrains specific settings to enforce best practices for formatting Markdown files.
+# These rules ensure consistent spacing, wrapping, and table formatting.
+ij_markdown_force_one_space_after_blockquote_symbol = true
+ij_markdown_force_one_space_after_header_symbol = true
+ij_markdown_force_one_space_after_list_bullet = true
+ij_markdown_force_one_space_between_words = true
+ij_markdown_format_tables = true
+ij_markdown_insert_quote_arrows_on_wrap = true
+ij_markdown_keep_indents_on_empty_lines = false
+ij_markdown_keep_line_breaks_inside_text_blocks = true
+ij_markdown_max_lines_around_block_elements = 1
+ij_markdown_max_lines_around_header = 1
+ij_markdown_max_lines_between_paragraphs = 1
+ij_markdown_min_lines_around_block_elements = 1
+ij_markdown_min_lines_around_header = 1
+ij_markdown_min_lines_between_paragraphs = 1
+ij_markdown_wrap_text_if_long = true
+ij_markdown_wrap_text_inside_blockquotes = true
 
 # Specific rules for Makefiles.
 [Makefile]
@@ -60,19 +97,8 @@ max_line_length = unset
 indent_size = unset
 indent_style = unset
 
-# Python-specific settings for JetBrains IDEs (PyCharm).
-# This section perfectly aligns the IDE's "Optimize Imports" feature with
-# the behavior of `ruff` and `isort`, ensuring consistency between the
-# developer's local actions and the project's CI/linting tools.
-[*.py]
-ij_python_optimize_imports_join_from_imports_with_same_source = true
-ij_python_optimize_imports_case_insensitive_order = true
-ij_python_optimize_imports_sort_imports = true
-ij_python_optimize_imports_sort_by_type_first = true
-ij_python_optimize_imports_always_split_from_imports = false
-ij_python_optimize_imports_sort_names_in_from_imports = false
 
-# PyCharm-specific settings to format this .editorconfig file itself.
+# JetBrains IDEs specific settings to format this .editorconfig file itself.
 [.editorconfig]
 ij_editorconfig_space_after_colon = false
 ij_editorconfig_space_after_comma = true
