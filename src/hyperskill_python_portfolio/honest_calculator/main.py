@@ -1,5 +1,7 @@
 """This module contains the main entry point for the Honest Calculator application."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from enum import Enum
 

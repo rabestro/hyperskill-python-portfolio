@@ -1,5 +1,7 @@
 """Defines handler functions that connect CLI arguments to core logic."""
 
+from __future__ import annotations
+
 import sys
 from argparse import Namespace
 

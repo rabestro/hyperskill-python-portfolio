@@ -4,6 +4,8 @@ It contains the state machine logic, resource management, and all the
 operations the coffee machine can perform.
 """
 
+from __future__ import annotations
+
 from types import MappingProxyType
 
 from .models import RECIPES, CoffeeRecipe, State

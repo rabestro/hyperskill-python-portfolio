@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import pytest
 
 from hyperskill_python_portfolio.hangman.models import HangmanSession, Status

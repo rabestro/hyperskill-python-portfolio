@@ -1,5 +1,7 @@
 """A helper script to run portfolio applications."""
 
+from __future__ import annotations
+
 import runpy
 import sys
 
@@ -28,7 +30,8 @@ def main() -> None:
     try:
         # Dynamically find and run the main module of the requested app.
         runpy.run_module(
-            f"hyperskill_python_portfolio.{app_name}.main", run_name="__main__"
+            f"hyperskill_python_portfolio.{app_name}.main",
+            run_name="__main__",
         )
     except ModuleNotFoundError:
         print(f"Error: Application '{app_name}' not found.", file=sys.stderr)

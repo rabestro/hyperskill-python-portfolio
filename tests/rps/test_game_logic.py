@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from hyperskill_python_portfolio.rps.game_logic import GameRules
 
 

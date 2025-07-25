@@ -1,5 +1,7 @@
 """This module defines the data models for the coffee machine application."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 from enum import Enum, auto
 

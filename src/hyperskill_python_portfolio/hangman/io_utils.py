@@ -1,5 +1,7 @@
 """Provides utility functions for handling user input."""
 
+from __future__ import annotations
+
 from .models import MenuOption
 
 

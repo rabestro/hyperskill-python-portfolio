@@ -1,5 +1,7 @@
 """Configures the command-line interface for the loan calculator."""
 
+from __future__ import annotations
+
 import argparse
 
 from .handlers import handle_annuity, handle_diff

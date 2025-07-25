@@ -1,5 +1,7 @@
 """Defines the core data models for the Hangman game."""
 
+from __future__ import annotations
+
 import dataclasses
 import enum
 
