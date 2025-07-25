@@ -1,5 +1,7 @@
 """Contains ASCII art for various zoo animals."""
 
+from __future__ import annotations
+
 CAMEL = r"""
 Switching on the camera in the camel habitat...
  ___.-''''-.

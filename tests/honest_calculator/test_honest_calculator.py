@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import pytest
 from pytest import CaptureFixture, MonkeyPatch, approx
 
@@ -22,7 +24,7 @@ def test_is_one_digit(calculator: HonestCalculator) -> None:
 
 
 def test_simple_addition(
-    calculator: HonestCalculator, monkeypatch: MonkeyPatch, capsys: CaptureFixture
+    calculator: HonestCalculator, monkeypatch: MonkeyPatch, capsys: CaptureFixture[str]
 ) -> None:
     """Tests a basic calculation using monkeypatch for input and capsys for output."""
     inputs = iter(["2 + 2", "n", "n"])
@@ -36,9 +38,9 @@ def test_simple_addition(
 
 
 def test_division_by_zero(
-    calculator: HonestCalculator, monkeypatch: MonkeyPatch, capsys: CaptureFixture
+    calculator: HonestCalculator, monkeypatch: MonkeyPatch, capsys: CaptureFixture[str]
 ) -> None:
-    """Tests that the division by zero error message is printed."""
+    """Tests that the division-by-zero error message is printed."""
     inputs = iter(["5 / 0", "1 + 1", "n", "n"])
     monkeypatch.setattr("builtins.input", lambda *args: next(inputs))
 
@@ -61,7 +63,7 @@ def test_store_in_memory(
 
 
 def test_use_memory_in_calculation(
-    calculator: HonestCalculator, monkeypatch: MonkeyPatch, capsys: CaptureFixture
+    calculator: HonestCalculator, monkeypatch: MonkeyPatch, capsys: CaptureFixture[str]
 ) -> None:
     """Tests that a stored value in memory can be used in the next calculation."""
     calculator.memory = 15.0
@@ -75,7 +77,7 @@ def test_use_memory_in_calculation(
 
 
 def test_laziness_check(
-    calculator: HonestCalculator, monkeypatch: MonkeyPatch, capsys: CaptureFixture
+    calculator: HonestCalculator, monkeypatch: MonkeyPatch, capsys: CaptureFixture[str]
 ) -> None:
     """Tests that the laziness check prints the correct combined message."""
     inputs = iter(["1 * 0", "n", "n"])

@@ -1,5 +1,7 @@
 """This module defines the core logic for a Rock-Paper-Scissors style game."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 
 #: A tuple containing the default game options in winning order.

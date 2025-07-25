@@ -1,5 +1,7 @@
 """Defines the data models for the Loan Calculator."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 
 

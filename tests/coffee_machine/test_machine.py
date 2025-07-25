@@ -1,5 +1,7 @@
 """Unit tests for the CoffeeMachine class."""
 
+from __future__ import annotations
+
 import unittest
 from io import StringIO
 from unittest.mock import patch

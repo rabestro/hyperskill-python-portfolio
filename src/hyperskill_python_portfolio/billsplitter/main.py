@@ -1,15 +1,21 @@
 """This module contains the main entry point for the Bill Splitter application."""
 
+from __future__ import annotations
+
 import random
 from collections.abc import Callable
+from typing import Final
 
-PROMPT_N_FRIENDS = "Enter the number of friends joining (including you):"
-PROMPT_BILL_VALUE = "Enter the total bill value:"
-PROMPT_LUCKY_FEATURE = 'Do you want to use the "Who is lucky?" feature? Write Yes/No:'
+PROMPT_N_FRIENDS: Final[str] = "Enter the number of friends joining (including you):"
+PROMPT_BILL_VALUE: Final[str] = "Enter the total bill value:"
+PROMPT_LUCKY_FEATURE: Final[str] = (
+    'Do you want to use the "Who is lucky?" feature? Write Yes/No:'
+)
 
 
 def get_non_negative_number[T: (int, float)](
-    prompt: str, converter: Callable[[str], T]
+    prompt: str,
+    converter: Callable[[str], T],
 ) -> T:
     """Prompts for a non-negative number (int or float) and handles validation."""
     while True:

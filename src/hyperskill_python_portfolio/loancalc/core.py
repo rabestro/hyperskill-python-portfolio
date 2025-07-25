@@ -1,5 +1,7 @@
 """Core functionality for the loan calculator."""
 
+from __future__ import annotations
+
 from math import ceil, log, pow
 
 from .models import LoanResult

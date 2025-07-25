@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from hyperskill_python_portfolio.loancalc.core import (
     calculate_annuity_payment,
     calculate_annuity_periods,

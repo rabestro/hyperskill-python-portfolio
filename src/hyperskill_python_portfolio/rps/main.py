@@ -6,6 +6,8 @@ This module is responsible for the user-facing interactions, including:
 - Running the main interactive game loop.
 """
 
+from __future__ import annotations
+
 import logging
 import random
 

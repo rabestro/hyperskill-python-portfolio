@@ -3,6 +3,8 @@
 It creates a CoffeeMachine instance and runs the user interaction loop.
 """
 
+from __future__ import annotations
+
 from .machine import CoffeeMachine
 
 

@@ -1,5 +1,7 @@
 """Main entry point for the chatbot application."""
 
+from __future__ import annotations
+
 from .bot import ChatBot
 
 

@@ -1,5 +1,7 @@
 """Currency Converter."""
 
+from __future__ import annotations
+
 import requests
 
 BASE_URL = "https://www.floatrates.com/daily/{code}.json"

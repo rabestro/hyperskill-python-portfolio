@@ -1,5 +1,7 @@
 """This module contains the main Game class that orchestrates the application."""
 
+from __future__ import annotations
+
 import random
 from typing import Final
 
