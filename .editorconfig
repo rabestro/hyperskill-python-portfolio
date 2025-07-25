@@ -32,6 +32,34 @@ spelling_language = en-US
 max_line_length = 88
 
 
+# --- JetBrains IDE Behavior ---------------------------------------------------
+# These settings fine-tune the editor's behavior for a better user experience.
+
+# Draws a vertical line at the `max_line_length` column. This provides a
+# non-intrusive visual guide to help developers adhere to the line length limit.
+ij_visual_guides = 88
+
+# Prevents the editor from automatically wrapping lines as you type.
+# Auto-wrapping during typing can be disruptive. It's better to wrap manually
+# or on save, which is handled by other settings.
+ij_wrap_on_typing = false
+
+
+# --- JetBrains Formatter Control ----------------------------------------------
+# These properties enable special comments to disable formatting for specific
+# blocks of code, which is useful for preserving manual alignment in data
+# structures or ASCII art.
+
+# Enables the use of formatter tags (`@formatter:off` and `@formatter:on`).
+ij_formatter_tags_enabled = true
+
+# Defines the comment that disables the formatter.
+ij_formatter_off_tag = @formatter:off
+
+# Defines the comment that re-enables the formatter.
+ij_formatter_on_tag = @formatter:on
+
+
 # Override for common data and config formats to use 2-space indentation
 # and disable line length checks, as they often contain long strings.
 # This is a very thoughtful override.
@@ -47,6 +75,7 @@ max_line_length = unset
 indent_style = tab
 max_line_length = unset
 
+
 # Rules for lock files.
 # These files are machine-generated and their formatting should not be changed.
 # We unset most rules to prevent accidental corruption by the editor.
@@ -55,6 +84,7 @@ max_line_length = unset
 trim_trailing_whitespace = unset
 indent_style = unset
 indent_size = unset
+
 
 # A smart exception for the LICENSE file.
 [LICENSE]
@@ -76,7 +106,7 @@ indent_style = unset
 # IDE will pass the project's pre-commit hooks and CI checks, creating a
 # smooth and consistent development experience for everyone on the team.
 #
-[*.{py,pyi}]
+[*.{py,pyi,pyw}]
 
 # --- Import Style -------------------------------------------------------------
 # Configures the "Optimize Imports" feature to match `ruff`'s `isort` rules.
@@ -88,6 +118,7 @@ ij_python_optimize_imports_sort_by_type_first = true
 ij_python_optimize_imports_always_split_from_imports = false
 ij_python_optimize_imports_sort_names_in_from_imports = false
 ij_python_align_multiline_imports = false
+
 
 # --- Wrapping and Trailing Commas ---------------------------------------------
 # These rules govern how lines are wrapped and how trailing commas are used,
@@ -114,6 +145,7 @@ ij_python_dict_wrapping = normal
 ij_python_list_wrapping = normal
 ij_python_tuple_wrapping = normal
 ij_python_set_wrapping = normal
+
 
 # --- Spacing (PEP 8 Compliance) -----------------------------------------------
 # These settings enforce PEP 8 spacing rules around operators, commas, colons,
@@ -150,6 +182,7 @@ ij_python_spaces_within_method_call_parentheses = false
 ij_python_space_within_empty_method_parentheses = false
 ij_python_space_within_empty_method_call_parentheses = false
 
+
 # --- Blank Lines (PEP 8 Compliance) -------------------------------------------
 # These rules enforce PEP 8 standards for vertical spacing, which is vital
 # for code readability and logical separation.
@@ -164,8 +197,13 @@ ij_python_blank_lines_around_class = 1
 # No extra blank lines at the start of a class body.
 ij_python_blank_lines_before_first_method = 0
 
+
 # --- Indentation and Alignment ------------------------------------------------
 # These are stylistic choices for how code is aligned when wrapped.
+
+# Sets the indent size for wrapped lines. A double indent (8) is a common
+# PEP 8 convention for a "hanging indent" to improve readability.
+ij_continuation_indent_size = 8
 
 # Standard indentation for wrapped lines.
 ij_python_use_continuation_indent_for_parameters = true
@@ -175,6 +213,11 @@ ij_python_use_continuation_indent_for_arguments = true
 ij_python_align_multiline_parameters = true
 ij_python_align_multiline_parameters_in_calls = true
 ij_python_align_collections_and_comprehensions = true
+
+# --- IDE Behavior -------------------------------------------------------------
+# Enforces that only spaces are used for indentation, preventing mixed tabs
+# and spaces, which is critical for Python.
+ij_smart_tabs = false
 
 
 ################################################################################
@@ -231,6 +274,52 @@ ij_markdown_min_lines_between_paragraphs = 1
 # General cleanup and consistency rules.
 ij_markdown_force_one_space_between_words = true
 ij_markdown_keep_indents_on_empty_lines = false
+
+
+################################################################################
+# YAML-Specific Settings (.yml, .yaml)
+################################################################################
+#
+# This section defines detailed formatting rules for YAML files, such as the
+# project's `mkdocs.yaml`, to ensure they are consistent and readable.
+#
+[{*.yaml,*.yml}]
+
+# Ensures that values in adjacent key-value pairs are not vertically aligned.
+# This leads to cleaner version control diffs.
+ij_yaml_align_values_properties = do_not_align
+
+# Automatically adds a new sequence marker (`- `) on the next line when
+# pressing Enter within a list.
+ij_yaml_autoinsert_sequence_marker = true
+
+# Ensures nested mappings start on the line immediately after the parent key.
+ij_yaml_block_mapping_on_new_line = false
+
+# Enforces that list items are indented relative to their parent.
+ij_yaml_indent_sequence_value = true
+
+# Removes any whitespace from empty lines to keep the file clean.
+ij_yaml_keep_indents_on_empty_lines = false
+
+# Preserves intentional line breaks, which is important for multi-line strings.
+ij_yaml_keep_line_breaks = true
+
+# If true, the formatter leaves comments starting at column 1 untouched.
+ij_yaml_line_comment_at_first_column = true
+
+# Ensures sequences start on the line immediately after the parent key.
+ij_yaml_sequence_on_new_line = false
+
+# Enforces no space before the colon in a key-value pair (`key: value`).
+ij_yaml_space_before_colon = false
+
+# Adds spaces inside braces for JSON-style objects: `{ key: value }`.
+ij_yaml_spaces_within_braces = true
+
+# Adds spaces inside brackets for JSON-style arrays: `[ item1, item2 ]`.
+ij_yaml_spaces_within_brackets = true
+
 
 ################################################################################
 # .editorconfig Self-Formatting Rules
