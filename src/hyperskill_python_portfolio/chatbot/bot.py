@@ -1,5 +1,7 @@
 """This module defines the ChatBot class and its conversational logic."""
 
+from __future__ import annotations
+
 import textwrap
 
 

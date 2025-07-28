@@ -1,5 +1,7 @@
 """Main entry point for the Loan Calculator application."""
 
+from __future__ import annotations
+
 from .cli import build_parser
 
 

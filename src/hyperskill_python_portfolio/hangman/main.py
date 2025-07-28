@@ -1,5 +1,7 @@
 """Main entry point for the Hangman game application."""
 
+from __future__ import annotations
+
 from .game import Game
 
 

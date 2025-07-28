@@ -1,5 +1,7 @@
 """A simple command-line zoo habitat viewer."""
 
+from __future__ import annotations
+
 from .art import ALL_ART
 
 GREETING = (

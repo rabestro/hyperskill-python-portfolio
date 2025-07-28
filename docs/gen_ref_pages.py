@@ -1,5 +1,7 @@
 """Generate the code reference pages."""
 
+from __future__ import annotations
+
 import tomllib
 from pathlib import Path
 
