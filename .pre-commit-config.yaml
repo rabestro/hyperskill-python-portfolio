@@ -22,7 +22,7 @@ repos:
   # Security Scanning (Prevent committing secrets)
   # ==============================================================================
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.27.2
+    rev: v8.28.0
     hooks:
       - id: gitleaks
 
@@ -30,7 +30,7 @@ repos:
   # Python Formatting & Linting (Standardized on Ruff)
   # ==============================================================================
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.5
+    rev: v0.12.7
     hooks:
       - id: ruff-check
         name: ruff-linter
