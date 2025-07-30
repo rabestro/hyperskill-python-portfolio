@@ -82,7 +82,9 @@ select = [
   "I", # isort: Ensures imports are neatly sorted and organized.
   "UP", # pyupgrade: Automatically rewrites code to use modern Python syntax.
   "B", # flake8-bugbear: Finds likely bugs and design problems.
+  "S", # flake8-bandit (security checks)
   "C4", # flake8-comprehensions: Pushes for more idiomatic list/dict/set comprehensions.
+  "C90", # mccabe (complexity checks)
   "D", # pydocstyle: Enforces standards for docstring formatting.
   "TID", # flake8-tidy-imports: Restricts relative imports to enforce a clean architecture.
   "RUF", # Ruff-specific rules: Catches ambiguities and improves code clarity.
