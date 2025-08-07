@@ -11,8 +11,7 @@ def get_menu_command() -> MenuOption:
 
     while True:
         prompt = (
-            'Type "play" to play the game, "results" to show the scoreboard, '
-            'and "exit" to quit:'
+            'Type "play" to play the game, "results" to show the scoreboard, and "exit" to quit:'
         )
         raw_input = input(prompt).lower()
         command = command_map.get(raw_input)

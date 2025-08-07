@@ -50,9 +50,7 @@ def test_division_by_zero(
     assert Msg.DIV_BY_ZERO.value in captured.out
 
 
-def test_store_in_memory(
-    calculator: HonestCalculator, monkeypatch: MonkeyPatch
-) -> None:
+def test_store_in_memory(calculator: HonestCalculator, monkeypatch: MonkeyPatch) -> None:
     """Tests that a result can be successfully stored in memory."""
     inputs = iter(["10 + 5", "y", "n"])
     monkeypatch.setattr("builtins.input", lambda *args: next(inputs))

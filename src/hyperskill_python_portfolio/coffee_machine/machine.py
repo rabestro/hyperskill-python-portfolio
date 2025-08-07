@@ -21,15 +21,12 @@ class CoffeeMachine:
             "1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu: ",
             State.FILLING_WATER: "Write how many ml of water you want to add:",
             State.FILLING_MILK: "Write how many ml of milk you want to add:",
-            State.FILLING_BEANS: ""
-            "Write how many grams of coffee beans you want to add:",
+            State.FILLING_BEANS: "Write how many grams of coffee beans you want to add:",
             State.FILLING_CUPS: "Write how many disposable cups you want to add:",
         }
     )
 
-    def __init__(
-        self, water: int, milk: int, beans: int, cups: int, money: int
-    ) -> None:
+    def __init__(self, water: int, milk: int, beans: int, cups: int, money: int) -> None:
         """Initializes the coffee machine with the given resources."""
         self.water = water
         self.milk = milk

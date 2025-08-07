@@ -80,9 +80,7 @@ def setup_player_and_score() -> tuple[str, int]:
     except FileNotFoundError:
         logging.info(f"{DEFAULT_RATING_FILE} not found. Starting with a score of 0.")
     except ValueError as e:
-        logging.warning(
-            f"Could not retrieve score for {user_name}: {e}. Starting with 0."
-        )
+        logging.warning(f"Could not retrieve score for {user_name}: {e}. Starting with 0.")
     return user_name, 0
 
 

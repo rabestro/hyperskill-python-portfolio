@@ -21,9 +21,7 @@ def test_handle_annuity_calculates_payment() -> None:
     args = Namespace(principal=500000, periods=360, interest=7.5, payment=None)
     mock_result = LoanResult(payment=3497, overpayment=758920)
 
-    with patch(
-        CALCULATE_ANNUITY_PAYMENT_PATH, return_value=mock_result
-    ) as mock_calculate:
+    with patch(CALCULATE_ANNUITY_PAYMENT_PATH, return_value=mock_result) as mock_calculate:
         # Act: Call the function we are testing
         result_string = handle_annuity(args)
 
@@ -40,9 +38,7 @@ def test_handle_annuity_calculates_principal() -> None:
     args = Namespace(payment=3500, periods=360, interest=7.5, principal=None)
     mock_result = LoanResult(principal=500418, overpayment=759582)
 
-    with patch(
-        CALCULATE_ANNUITY_PRINCIPAL_PATH, return_value=mock_result
-    ) as mock_calculate:
+    with patch(CALCULATE_ANNUITY_PRINCIPAL_PATH, return_value=mock_result) as mock_calculate:
         # Act
         result_string = handle_annuity(args)
 

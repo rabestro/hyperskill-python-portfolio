@@ -35,9 +35,7 @@ def get_user_score(username: str, file_path: Path = DEFAULT_RATING_FILE) -> int:
     raise ValueError(f"Username '{username}' not found in {file_path}")
 
 
-def save_user_score(
-    username: str, score: int, file_path: Path = DEFAULT_RATING_FILE
-) -> None:
+def save_user_score(username: str, score: int, file_path: Path = DEFAULT_RATING_FILE) -> None:
     """Saves or updates a user's score in the rating file.
 
     This function reads all existing scores, updates the score for the
@@ -58,9 +56,7 @@ def save_user_score(
                     try:
                         scores[name] = int(score_str)
                     except ValueError:
-                        logging.warning(
-                            f"Skipping malformed score for {name} in {file_path}"
-                        )
+                        logging.warning(f"Skipping malformed score for {name} in {file_path}")
     except FileNotFoundError:
         logging.info(f"Rating file {file_path} not found. A new one will be created.")
 

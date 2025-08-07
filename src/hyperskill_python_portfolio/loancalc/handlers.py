@@ -28,8 +28,7 @@ def handle_annuity(args: Namespace) -> str:
     known = [args.principal, args.payment, args.periods]
     if known.count(None) != 1:
         print(
-            "Error: Exactly one of --principal, "
-            "--payment, or --periods must be omitted.",
+            "Error: Exactly one of --principal, --payment, or --periods must be omitted.",
             file=sys.stderr,
         )
         sys.exit(1)
