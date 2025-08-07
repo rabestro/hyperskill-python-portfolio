@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.12"
 
 [[package]]
@@ -146,8 +146,8 @@ requires-dist = [
     { name = "mkdocs-material", marker = "extra == 'docs'" },
     { name = "mkdocstrings-python", marker = "extra == 'docs'" },
     { name = "mypy", marker = "extra == 'dev'" },
-    { name = "poethepoet", marker = "extra == 'dev'", specifier = ">=0.36.0" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.4.1" },
+    { name = "poethepoet", marker = "extra == 'dev'" },
+    { name = "pytest", marker = "extra == 'dev'" },
     { name = "radon", marker = "extra == 'dev'" },
     { name = "requests" },
     { name = "ruff", marker = "extra == 'dev'" },
