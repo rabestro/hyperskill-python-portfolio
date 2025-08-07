@@ -4,10 +4,7 @@ from __future__ import annotations
 
 from .art import ALL_ART
 
-GREETING = (
-    "Please enter the number of the habitat "
-    f"(0-{len(ALL_ART) - 1}) you would like to view:"
-)
+GREETING = f"Please enter the number of the habitat (0-{len(ALL_ART) - 1}) you would like to view:"
 FAREWELL = "See you later!"
 ERROR_MESSAGE = "\nInvalid habitat number. Please try again.\n"
 EXIT_COMMAND = "exit"

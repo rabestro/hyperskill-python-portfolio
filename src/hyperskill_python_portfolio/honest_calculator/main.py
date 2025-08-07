@@ -14,18 +14,13 @@ class Msg(Enum):
     STORE_RESULT = "Do you want to store the result? (y / n):"
     CONTINUE = "Do you want to continue calculations? (y / n):"
     ONE_DIGIT_SURE = "Are you sure? It is only one digit! (y / n):"
-    ONE_DIGIT_SILLY = (
-        "Don't be silly! It's just one number! Add to the memory? (y / n):"
-    )
-    ONE_DIGIT_EMBARRASS = (
-        "Last chance! Do you really want to embarrass yourself? (y / n):"
-    )
+    ONE_DIGIT_SILLY = "Don't be silly! It's just one number! Add to the memory? (y / n):"
+    ONE_DIGIT_EMBARRASS = "Last chance! Do you really want to embarrass yourself? (y / n):"
 
     # --- Errors & Warnings ---
     INVALID_NUMBER = "Do you even know what numbers are? Stay focused!"
     INVALID_OPERATOR = (
-        "Yes ... an interesting math operation. "
-        "You've slept through all classes, haven't you?"
+        "Yes ... an interesting math operation. You've slept through all classes, haven't you?"
     )
     DIV_BY_ZERO = "Yeah... division by zero. Smart move..."
 
@@ -78,9 +73,7 @@ class HonestCalculator:
             (lambda: (x == 0 or y == 0) and oper in "+-*", Msg.IS_VERY_VERY_LAZY),
         ]
 
-        messages_to_print = [
-            msg.value for condition, msg in laziness_rules if condition()
-        ]
+        messages_to_print = [msg.value for condition, msg in laziness_rules if condition()]
 
         if messages_to_print:
             full_message = Msg.LAZY_PREFIX.value + "".join(messages_to_print)
