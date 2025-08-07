@@ -27,9 +27,8 @@ trim_trailing_whitespace = true
 # Good for team consistency. Specifies the language for the IDE's spell checker.
 spelling_language = en-US
 
-# Sets a project-wide line length. 88 is the standard for the Black code
-# formatter and is a great choice for modern displays.
-max_line_length = 88
+# Sets a project-wide line length.
+max_line_length = 99
 
 
 # --- JetBrains IDE Behavior ---------------------------------------------------
@@ -37,7 +36,7 @@ max_line_length = 88
 
 # Draws a vertical line at the `max_line_length` column. This provides a
 # non-intrusive visual guide to help developers adhere to the line length limit.
-ij_visual_guides = 88
+ij_visual_guides = 99
 
 # Prevents the editor from automatically wrapping lines as you type.
 # Auto-wrapping during typing can be disruptive. It's better to wrap manually
