@@ -39,7 +39,7 @@ repos:
         name: ruff-formatter
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.8.5
+    rev: 0.10.7
     hooks:
       - id: uv-lock
       - id: uv-export
@@ -48,7 +48,7 @@ repos:
         args: [ "--all-extras" ]
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: v2.6.0
+    rev: v2.16.2
     hooks:
       - id: pyproject-fmt
         exclude: ^tests/.*$
