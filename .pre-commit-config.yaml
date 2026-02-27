@@ -38,6 +38,21 @@ repos:
       - id: ruff-format
         name: ruff-formatter
 
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.8.5
+    hooks:
+      - id: uv-lock
+      - id: uv-export
+        args: [ "--output-file=pylock.toml" ]
+      - id: uv-sync
+        args: [ "--all-extras" ]
+
+  - repo: https://github.com/tox-dev/pyproject-fmt
+    rev: v2.6.0
+    hooks:
+      - id: pyproject-fmt
+        exclude: ^tests/.*$
+
   # =================================_=============================================
   # Documentation & Text File Linting
   # ==============================================================================
@@ -53,5 +68,5 @@ repos:
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: 'v1.19.1'
     hooks:
-    -   id: mypy
-        additional_dependencies: ['pytest', 'types-requests']
+      - id: mypy
+        additional_dependencies: [ 'pytest', 'types-requests' ]
