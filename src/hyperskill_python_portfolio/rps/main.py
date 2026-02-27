@@ -87,14 +87,14 @@ def setup_player_and_score() -> tuple[str, int]:
 def setup_rules() -> GameRules:
     """Prompts the user for custom game rules or uses the default."""
     options_str = input(
-        "Enter game options (e.g., rock,paper,scissors) or leave empty for default:\n"
+        "Enter game options (e.g., rock,paper,scissors) or leave empty for default:\n",
     )
     return create_rules_from_input(options_str)
 
 
 def main() -> None:
     """Sets up the game and runs the main loop."""
-    user_name, initial_score = setup_player_and_score()
+    _, initial_score = setup_player_and_score()
     rules = setup_rules()
 
     print("Okay, let's start")

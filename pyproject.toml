@@ -25,7 +25,7 @@ classifiers = [
   "Topic :: Education",
 ]
 dependencies = [
-  "requests"
+  "requests",
 ]
 
 [project.urls]
@@ -39,9 +39,12 @@ dev = [
   "ruff",
   "mypy",
   "radon",
-  "pytest",
+  "pytest~=9.0",
+  "pytest-cov~=7.0",
+  "pytest-testdox>=3.1.0",
   "types-requests",
   "poethepoet",
+  "pre-commit",
 ]
 docs = [
   "mkdocs",
