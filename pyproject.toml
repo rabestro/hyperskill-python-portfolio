@@ -25,9 +25,7 @@ classifiers = [
   "Topic :: Education",
 ]
 dependencies = [
-  "mypy>=1.16.1",
   "requests",
-  "ruff>=0.12.2",
 ]
 
 [project.urls]
