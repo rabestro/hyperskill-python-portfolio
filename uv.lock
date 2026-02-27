@@ -229,7 +229,9 @@ wheels = [
 name = "hyperskill-python-portfolio"
 source = { editable = "." }
 dependencies = [
+    { name = "mypy" },
     { name = "requests" },
+    { name = "ruff" },
 ]
 
 [package.optional-dependencies]
@@ -259,6 +261,7 @@ requires-dist = [
     { name = "mkdocs-literate-nav", marker = "extra == 'docs'" },
     { name = "mkdocs-material", marker = "extra == 'docs'" },
     { name = "mkdocstrings-python", marker = "extra == 'docs'" },
+    { name = "mypy", specifier = ">=1.16.1" },
     { name = "mypy", marker = "extra == 'dev'" },
     { name = "poethepoet", marker = "extra == 'dev'" },
     { name = "pre-commit", marker = "extra == 'dev'" },
@@ -267,6 +270,7 @@ requires-dist = [
     { name = "pytest-testdox", marker = "extra == 'dev'", specifier = ">=3.1.0" },
     { name = "radon", marker = "extra == 'dev'" },
     { name = "requests" },
+    { name = "ruff", specifier = ">=0.12.2" },
     { name = "ruff", marker = "extra == 'dev'" },
     { name = "types-requests", marker = "extra == 'dev'" },
 ]
