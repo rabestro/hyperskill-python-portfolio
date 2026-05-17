@@ -60,7 +60,7 @@ jobs:
       # It will run even if the previous step failed, allowing you to see the results.
       - name: Upload inspection report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: pycharm-inspection-report
           path: ./inspection-results
