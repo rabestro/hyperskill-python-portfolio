@@ -236,7 +236,7 @@ switch = [
 # ==============================================================================
 
 [build-system]
-requires = ["setuptools>=80.0", "setuptools-scm>=8.0"]
+requires = ["setuptools>=82.0.1", "setuptools-scm>=8.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
