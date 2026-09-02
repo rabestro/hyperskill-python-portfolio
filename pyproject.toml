@@ -167,7 +167,7 @@ cmd = "ruff check src tests --fix --show-fixes"
 help = "✨ Lints and automatically fixes issues with Ruff"
 
 [tool.poe.tasks.mypy]
-cmd = "mypy src/ --install-types"
+cmd = "mypy src/ --install-types --non-interactive"
 help = "🧐 Checks static types with mypy"
 
 # --- Testing & Code Metrics ---
