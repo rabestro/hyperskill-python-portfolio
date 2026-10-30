@@ -65,9 +65,9 @@ coffeemachine = "hyperskill_python_portfolio.coffee_machine.main:main"
 honestcalc = "hyperskill_python_portfolio.honest_calculator.main:main"
 cconverter = "hyperskill_python_portfolio.currency_converter.main:main"
 
-# ==============================================================================
+# =======================================================================
 # Tooling Configuration
-# ==============================================================================
+# =======================================================================
 
 [tool.uv]
 package = true
@@ -77,7 +77,6 @@ index-strategy = "unsafe-best-match"
 name = "testpypi"
 url = "https://test.pypi.org/simple/"
 publish-url = "https://test.pypi.org/legacy/"
-
 
 [tool.ruff]
 target-version = "py312"
@@ -102,7 +101,6 @@ select = [
 ]
 ignore = []
 
-
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
@@ -121,13 +119,11 @@ required-imports = ["from __future__ import annotations"]
   "S101", # Use of `assert` is standard practice in tests
 ]
 
-
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
 line-ending = "lf"
 docstring-code-format = true
-
 
 [tool.mypy]
 mypy_path = "src"
@@ -138,15 +134,14 @@ minversion = "7.0"
 testpaths = ["tests"]
 addopts = "-ra -q --strict-markers"
 
-
 [tool.radon]
 exclude = ["tests", "docs"]
 cc_min = "B"
 mi_min = 70
 
-# ==============================================================================
+# =======================================================================
 # Poe the Poet Task Runner Configuration
-# ==============================================================================
+# =======================================================================
 [tool.poe.tasks]
 
 [tool.poe.tasks.install]
@@ -183,7 +178,6 @@ help = "🔬 Reports cyclomatic complexity"
 cmd = "radon mi --show --sort src/"
 help = "🔧 Reports maintainability index"
 
-
 # --- Build & Distribution ---
 [tool.poe.tasks.build]
 cmd = "uv build"
@@ -205,12 +199,10 @@ help = "🚀 Publishes artifacts to TestPyPI"
 script = "poethepoet.scripts:rm('build', 'dist', '**/*.egg-info', '.eggs', '.pytest_cache', '.coverage', '.mypy_cache', '.ruff_cache', '**/__pycache__', '**/*.pyc', '.DS_Store')"
 help = "🧹 Removes build artifacts and cache files (cross-platform)"
 
-
 # --- Project Execution ---
 [tool.poe.tasks.run]
 cmd = "python -m hyperskill_python_portfolio.scripts.runner"
 help = "▶️  Runs an application (e.g., poe run loancalc --principal 1000)"
-
 
 # --- Aggregation & Advanced Tasks ---
 [tool.poe.tasks.quality]
@@ -231,12 +223,14 @@ switch = [
   { expr = "f'Running on an unknown platform: {sys.platform}'" }, # Default case
 ]
 
-# ==============================================================================
+# =======================================================================
 # Build System Configuration
-# ==============================================================================
+# =======================================================================
 
 [build-system]
-requires = ["setuptools>=84.0.0", "setuptools-scm>=10.2.1"]
+
+requires = ["setuptools>=84.0.0", "setuptools-scm>=10.2.3"]
+
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
