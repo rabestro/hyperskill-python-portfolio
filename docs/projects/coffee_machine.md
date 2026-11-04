@@ -68,8 +68,10 @@ Instead of using simple strings like `"main_menu"` for states (which can lead to
 # From: src/hyperskill_python_portfolio/coffee_machine/models.py
 from enum import Enum, auto
 
+
 class State(Enum):
     """Represents the operational states of the CoffeeMachine."""
+
     MAIN_MENU = auto()
     CHOOSING_COFFEE = auto()
     FILLING_WATER = auto()
@@ -84,9 +86,11 @@ Similarly, all the data for a coffee recipe (water, milk, beans, price) was cons
 # From: src/hyperskill_python_portfolio/coffee_machine/models.py
 from dataclasses import dataclass
 
+
 @dataclass(frozen=True)
 class CoffeeRecipe:
     """A data blueprint for a coffee type. Immutable by design."""
+
     name: str
     water_ml: int
     milk_ml: int

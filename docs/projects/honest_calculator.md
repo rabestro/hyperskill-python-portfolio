@@ -74,6 +74,7 @@ class Msg(Enum):
     # ...
     DIV_BY_ZERO = "Yeah... division by zero. Smart move..."
 
+
 # Clear, safe, and self-documenting
 print(Msg.DIV_BY_ZERO.value)
 ```
